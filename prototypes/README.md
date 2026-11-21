@@ -94,6 +94,7 @@ Tips when editing:
 | #430 Responsive design mode | `430-responsive-mode.qml` |
 | #439 Responsive mode: Chrome devices and density | `430b-responsive-devices.qml` |
 | #441 Translate pages on the device | `441-translate-offer.qml`, `441b-translate-menu.qml`, `441c-translate-downloading.qml`, `441d-page-translated.qml`, `441e-manage-languages.qml` |
+| #452 Protected content (DRM) | `452-drm-offer.qml`, `452b-drm-downloading.qml`, `452c-drm-restart.qml` (shared mock in `common/DrmBarMock.qml`) |
 
 Issues without UI (#10 default browser, #15 single instance, #19 translations, #25 Flatpak,
 #26 tests) have no prototype.
