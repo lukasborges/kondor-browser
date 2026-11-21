@@ -124,3 +124,19 @@ def test_lowering_the_ratio_keeps_the_css_size(
     tab.responsive.selectDevice("pixel-9")
     tab.responsive.setRatio(1)
     qtbot.waitUntil(lambda: scene.view.property("title") == "412x924@1", timeout=20000)
+
+
+def test_high_ratio_page_is_downscaled_smoothly(scene_and_tab: tuple[Scene, Tab]) -> None:
+    scene, tab = scene_and_tab
+    tab.responsive.setActive(True)
+    tab.responsive.selectDevice("pixel-9")
+    assert scene.root.property("isPageDownscaled")
+
+
+def test_page_at_screen_size_is_not_resampled(scene_and_tab: tuple[Scene, Tab]) -> None:
+    scene, tab = scene_and_tab
+    tab.responsive.setActive(True)
+    tab.responsive.selectDevice("pixel-9")
+    tab.responsive.setRatio(1)
+    tab.responsive.setZoomToFit(False)
+    assert not scene.root.property("isPageDownscaled")

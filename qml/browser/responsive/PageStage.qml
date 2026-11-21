@@ -16,6 +16,7 @@ Rectangle {
     readonly property real footer: Kirigami.Units.gridUnit * 2
     readonly property real pageZoom: isResponsive ? responsive.ratio / Screen.devicePixelRatio : 1
     readonly property real fitScale: isResponsive && responsive.zoomToFit ? scaleToFit() : 1
+    readonly property bool isPageDownscaled: fitScale / pageZoom < 1
 
     function scaleToFit() {
         const horizontal = (width - 2 * margin) / responsive.width
@@ -50,6 +51,9 @@ Rectangle {
                 height: root.isResponsive ? root.responsive.height * root.pageZoom : frame.height
                 scale: root.fitScale / root.pageZoom
                 transformOrigin: Item.TopLeft
+                layer.enabled: root.isPageDownscaled
+                layer.smooth: true
+                layer.mipmap: true
             }
 
             Rectangle {
