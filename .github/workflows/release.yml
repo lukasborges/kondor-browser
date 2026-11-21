@@ -31,7 +31,7 @@ jobs:
           exit 1
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Prepare AppDir
         run: |
@@ -68,7 +68,7 @@ jobs:
           test ! -e AppDir/usr/lib/libp11-kit.so.0
 
       - name: Upload AppImage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Kondor-x86_64.AppImage
           path: Kondor-x86_64.AppImage
@@ -82,7 +82,7 @@ jobs:
 
     steps:
       - name: Download AppImage
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: Kondor-x86_64.AppImage
 
@@ -123,12 +123,12 @@ jobs:
         run: dnf -y install git gh
 
       - name: Check out the release notes
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           sparse-checkout: docs/releases
 
       - name: Download AppImage
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: Kondor-x86_64.AppImage
 
@@ -153,7 +153,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Import the signing key
         env:
@@ -218,13 +218,13 @@ jobs:
         run: scripts/flatpak-site.sh "$FLATPAK_KEY_ID" repo site
 
       - name: Upload bundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bundle
           path: Kondor.flatpak
 
       - name: Upload site
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
@@ -241,7 +241,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   flatpak-upload:
     if: github.event_name == 'push'
@@ -249,7 +249,7 @@ jobs:
     needs: flatpak
     steps:
       - name: Download bundle
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: bundle
           path: bundle
