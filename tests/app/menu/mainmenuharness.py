@@ -28,17 +28,19 @@ def expected_top_level_rows() -> list[str]:
     return [
         *["New Tab", "New Private Tab", "New Window", "New Private Window", "Profiles", "-"],
         *["Bookmarks", "History", "-", "Find in Page…", "Print…", "Save Page As…", "-"],
-        *["[row]", "Hide Toolbars", "-", "More Tools", "-", "Configure Kondor Browser…", "Help"],
+        *["[row]", "Hide Toolbars", "-", "More Tools", "Developer Tools", "-"],
+        *["Configure Kondor Browser…", "Help"],
     ]
 
 
 def expected_more_tools_rows() -> list[str]:
+    return ["Save as PDF…", "Take Screenshot…", "Site Permissions…"]
+
+
+def expected_developer_tools_rows() -> list[str]:
     return [
-        "Developer Tools",
-        "Responsive Design Mode",
-        "Save as PDF…",
-        "Take Screenshot…",
-        "Site Permissions…",
+        *["Show Developer Tools", "Responsive Design Mode", "Position"],
+        *["Bottom", "Left", "Right", "Separate Window"],
     ]
 
 

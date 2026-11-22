@@ -87,7 +87,7 @@ See what's coming next on the [Roadmap](https://github.com/users/lukasborges/pro
 - **Translate pages** on your computer, offline after a one-time download per language
 
 ### For developers
-- **Developer tools** (F12) and **view source**
+- **Developer tools** (F12), docked on any side or in a window, and **view source**
 - **Responsive design mode** previews a page on Chrome's phone and tablet list, with pixel ratio
 - **Remote control** lets AI agents work in marked tabs of their own through a built-in MCP server (off by default)
 - **Load unpacked extensions** with `--load-extension <dir>` (experimental, needs `--new-instance`)

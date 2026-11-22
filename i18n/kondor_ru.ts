@@ -442,8 +442,8 @@
         <translation>Скрыть панели инструментов</translation>
     </message>
     <message>
-        <source>Developer Tools</source>
-        <translation>Инструменты разработчика</translation>
+        <source>Show Developer Tools</source>
+        <translation>Показать инструменты разработчика</translation>
     </message>
     <message>
         <source>Responsive Design Mode</source>
@@ -656,6 +656,46 @@
     <message>
         <source>Delete</source>
         <translation>Удалить</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsMenu</name>
+    <message>
+        <source>Developer Tools</source>
+        <translation>Инструменты разработчика</translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <extracomment>Section of the Developer Tools menu: where developer tools are shown</extracomment>
+        <translation>Положение</translation>
+    </message>
+    <message>
+        <source>Bottom</source>
+        <extracomment>Developer tools docked below the page</extracomment>
+        <translation>Снизу</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <extracomment>Developer tools docked on the left of the page</extracomment>
+        <translation>Слева</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <extracomment>Developer tools docked on the right of the page</extracomment>
+        <translation>Справа</translation>
+    </message>
+    <message>
+        <source>Separate Window</source>
+        <extracomment>Developer tools shown in a window of their own</extracomment>
+        <translation>Отдельное окно</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsWindow</name>
+    <message>
+        <source>%1 — Developer Tools</source>
+        <extracomment>Title of the window that holds undocked developer tools; %1 is the inspected page</extracomment>
+        <translation>%1 — Инструменты разработчика</translation>
     </message>
 </context>
 <context>

@@ -22,6 +22,8 @@ POPUP_GUARD_RESOURCE = ":/scripts/popupguard.js"
 POPUP_WATCH_RESOURCE = ":/scripts/popupwatch.js"
 DEVTOOLS_ROUTING_RESOURCE = ":/scripts/devtoolsrouting.js"
 DEVTOOLS_ROUTING_SCRIPT = "kondor-devtools-routing"
+DEVTOOLS_DOCKING_RESOURCE = ":/scripts/devtoolsdocking.js"
+DEVTOOLS_DOCKING_SCRIPT = "kondor-devtools-docking"
 POPUP_GUARD_SCRIPT = "kondor-popup-guard"
 POPUP_WATCH_SCRIPT = "kondor-popup-watch"
 USER_SCRIPTS_PROPERTY = "userScripts"
@@ -113,6 +115,9 @@ WIDEVINE_WATCH = PageScript(
 DEVTOOLS_ROUTING = PageScript(
     DEVTOOLS_ROUTING_SCRIPT, DEVTOOLS_ROUTING_RESOURCE, ScriptWorldId.MainWorld
 )
+DEVTOOLS_DOCKING = PageScript(
+    DEVTOOLS_DOCKING_SCRIPT, DEVTOOLS_DOCKING_RESOURCE, ScriptWorldId.MainWorld
+)
 
 
 def install_page_script(collection: QObject | None, script: PageScript, feature: str) -> None:
@@ -144,8 +149,9 @@ def install_widevine_scripts(collection: QObject | None) -> None:
     install_page_script(collection, WIDEVINE_WATCH, "the Widevine offer")
 
 
-def install_devtools_routing(collection: QObject | None) -> None:
+def install_devtools_scripts(collection: QObject | None) -> None:
     install_page_script(collection, DEVTOOLS_ROUTING, "responsive design mode in Developer Tools")
+    install_page_script(collection, DEVTOOLS_DOCKING, "the Developer Tools dock side")
 
 
 def keep_cpp_ownership(target: QObject | None) -> None:
@@ -169,6 +175,6 @@ def install(profile: QQuickWebEngineProfile) -> None:
     install_popup_scripts(collection)
     install_translate_scripts(collection)
     install_widevine_scripts(collection)
-    install_devtools_routing(collection)
+    install_devtools_scripts(collection)
     if not profile.isOffTheRecord():
         install_passwords_script(collection)

@@ -3,6 +3,7 @@ from PySide6.QtWebEngineQuick import QQuickWebEngineProfile
 
 from kondor.browser.agent.agenttabs import AgentTabs
 from kondor.browser.agent.tabagent import TabAgent
+from kondor.browser.devtools.tabdevtools import TabDevTools
 from kondor.browser.responsive.tabresponsive import TabResponsive
 from kondor.browser.tabs.assignandnotify import assign_and_notify
 from kondor.browser.tabs.features.tabaudio import TabAudio
@@ -68,7 +69,7 @@ class Tab(TabViewState):
         self._identity = TabIdentity(profile, self._is_private, self)
         self._translation = TabTranslation(self._is_private, self)
         self._create_playback_groups()
-        self._create_responsive_group(profile)
+        self._create_developer_groups(profile)
 
     def _create_playback_groups(self) -> None:
         self._sleep = TabSleep(self)
@@ -76,9 +77,10 @@ class Tab(TabViewState):
         self._audio = TabAudio(self)
         self._widevine = TabWidevine(self)
 
-    def _create_responsive_group(self, profile: QQuickWebEngineProfile | None) -> None:
+    def _create_developer_groups(self, profile: QQuickWebEngineProfile | None) -> None:
         self._responsive = TabResponsive(profile, self._is_private, self)
         self._responsive.reloadRequested.connect(self.reload)
+        self._dev_tools = TabDevTools(self)
 
     def _create_agent_group(self) -> None:
         self._agent = TabAgent(self._is_private, self)
@@ -99,6 +101,7 @@ class Tab(TabViewState):
     widevine = Property(TabWidevine, lambda self: self._widevine, constant=True)
     identity = Property(TabIdentity, lambda self: self._identity, constant=True)
     responsive = Property(TabResponsive, lambda self: self._responsive, constant=True)
+    devTools = Property(TabDevTools, lambda self: self._dev_tools, constant=True)
     agent = Property(TabAgent, lambda self: self._agent, constant=True)
     sleep = Property(TabSleep, lambda self: self._sleep, constant=True)
     extensionItems = Property(TabExtensionItems, lambda self: self._extension_items, constant=True)

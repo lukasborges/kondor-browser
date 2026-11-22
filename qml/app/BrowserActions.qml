@@ -98,15 +98,15 @@ QtObject {
         onToggled: Settings.hideToolbars = checked
     }
     readonly property Action devToolsAction: Action {
-        text: qsTr("Developer Tools")
-        icon.name: "code-context"
+        text: qsTr("Show Developer Tools")
         shortcut: "F12"
+        checkable: true
+        checked: root.tabs.currentTab ? root.tabs.currentTab.devToolsOpen : false
         enabled: root.hasPage
         onTriggered: root.tabs.currentTab.toggleDevTools()
     }
     readonly property Action responsiveModeAction: Action {
         text: qsTr("Responsive Design Mode")
-        icon.name: "smartphone"
         shortcut: "Ctrl+Shift+M"
         checkable: true
         checked: root.tabs.currentTab ? root.tabs.currentTab.responsive.isActive : false

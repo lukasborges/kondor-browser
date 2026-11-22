@@ -2,6 +2,7 @@ from kondor.browser.address.searchsuggestions import SearchSuggestions
 from kondor.browser.agent.agentpointer import AgentPointer
 from kondor.browser.agent.tabagent import TabAgent
 from kondor.browser.capture.screenshot import Screenshot
+from kondor.browser.devtools.tabdevtools import TabDevTools
 from kondor.browser.favicons.faviconstore import FaviconStore
 from kondor.browser.media.mediabridge import MediaBridge
 from kondor.browser.popups.popupbridge import PopupBridge
@@ -41,6 +42,7 @@ QML_TYPES: tuple[QmlType, ...] = (
     QmlType(SearchSuggestions, "SearchSuggestions", QmlKind.SINGLETON),
     QmlType(SessionManager, "SessionManager", QmlKind.SINGLETON),
     QmlType(Tab, "Tab", QmlKind.UNCREATABLE),
+    QmlType(TabDevTools, "TabDevTools", QmlKind.UNCREATABLE),
     QmlType(TabSecurity, "TabSecurity", QmlKind.UNCREATABLE),
     QmlType(TabPermissions, "TabPermissions", QmlKind.UNCREATABLE),
     QmlType(TabPasswords, "TabPasswords", QmlKind.UNCREATABLE),

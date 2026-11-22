@@ -4,6 +4,7 @@ from PySide6.QtTest import QTest
 
 from tests.app.menu.mainmenuharness import (
     MainMenuHarness,
+    expected_developer_tools_rows,
     expected_help_rows,
     expected_more_tools_rows,
     expected_top_level_rows,
@@ -15,7 +16,7 @@ from tests.qmlsupport import captured_messages
 pytestmark = pytest.mark.no_qt_log
 HISTORY = "mainMenu.itemAt(7).subMenu"
 SEPARATOR_COUNT = 5
-ROW_COUNT = 15
+ROW_COUNT = 16
 MINIMUM_ACTIONS = 10
 
 
@@ -26,7 +27,8 @@ def test_rows_and_order(menu: MainMenuHarness) -> None:
     assert rows.count("-") == SEPARATOR_COUNT
     assert len(without_separators(rows)) == ROW_COUNT
     assert menu.rows_of("mainMenu.itemAt(16).subMenu") == expected_more_tools_rows()
-    assert menu.rows_of("mainMenu.itemAt(19).subMenu") == expected_help_rows()
+    assert menu.rows_of("mainMenu.itemAt(17).subMenu") == expected_developer_tools_rows()
+    assert menu.rows_of("mainMenu.itemAt(20).subMenu") == expected_help_rows()
 
 
 def test_history_submenu_lists_recently_closed_tabs(menu: MainMenuHarness) -> None:

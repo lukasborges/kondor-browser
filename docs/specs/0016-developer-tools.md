@@ -31,9 +31,31 @@ No DevTools. `WebEngineView` has the `devToolsView` / `inspectedView` properties
 
 Open DevTools on kde.org, run `document.title` in the Console, inspect an image via the context menu, switch tabs, close with F12.
 
+## Position (follow-up, maintainer's request)
+
+DevTools can sit **below**, **left** or **right** of the page, or in a **separate window**, like
+Chrome's "Dock side". The last choice is saved (`Settings.devToolsDockSide`: `bottom`, `left`,
+`right` or `undocked`; default `bottom`) and used by the next DevTools that opens; DevTools already
+open in other tabs keep their place.
+
+1. **In DevTools itself**: the ⋮ menu shows Chromium's own "Dock side" row. Qt WebEngine hides it
+   (it does not pass `can_dock=true` to the frontend), so `src/kondor/browser/devtools/devtoolsdocking.js`
+   (a page script in the main world, like the responsive routing) adds the parameter, keeps
+   DevTools' own layout whole (no empty area for the page, no screencast toggle), reports each
+   change as the console message `kondor:devtools-dock:<side>` and exposes
+   `kondorShowDockSide(side)` so Kondor can select the current side.
+2. **In Kondor's menu**: a **Developer Tools** submenu right after More Tools holds
+   **Show Developer Tools** (F12, checked while open), **Responsive Design Mode** and a
+   **Position** section with the exclusive items **Bottom**, **Left**, **Right** and
+   **Separate Window**. Choosing one moves the open DevTools, or opens them there.
+3. **Per tab**: `tab.devTools` (`TabDevTools`) holds `dockSide`; `moveTo(side)` is the command,
+   handled by `qml/browser/view/devtools/DevToolsLayout.qml`, which docks the view in the page's
+   `SplitView` (resizable in every position) or moves it into `DevToolsWindow`
+   ("<page title> — Developer Tools"). Closing that window closes DevTools.
+
 ## Out of scope
 
-Undocking DevTools into a separate window, remote debugging port settings.
+Remote debugging port settings.
 
 ## Dependencies
 
@@ -47,6 +69,24 @@ Visual target — match it (controls, Kirigami components, icon names, wording, 
 
 ![DevTools docked below the page](../../prototypes/screenshots/16-devtools.png)
 
+**Dock side from DevTools' own menu** — [`prototypes/16b-devtools-dock-side.qml`](../../prototypes/16b-devtools-dock-side.qml)
+
+![Dock side row in DevTools](../../prototypes/screenshots/16b-devtools-dock-side.png)
+
+**Developer Tools submenu with the position** — [`prototypes/16c-devtools-position-menu.qml`](../../prototypes/16c-devtools-position-menu.qml)
+
+![Developer Tools submenu](../../prototypes/screenshots/16c-devtools-position-menu.png)
+
+**Separate window** — [`prototypes/16d-devtools-separate-window.qml`](../../prototypes/16d-devtools-separate-window.qml)
+
+![DevTools in a separate window](../../prototypes/screenshots/16d-devtools-separate-window.png)
+
 ## Decisions
 
-_None yet._ Answers to developer questions (`question` label) are recorded here as `| Question | Decision |` rows.
+Answers to developer questions (`question` label) are recorded here as `| Question | Decision |` rows.
+
+| Question | Decision |
+| --- | --- |
+| Where does the position live in Kondor's menu? | A **Developer Tools** submenu of its own after More Tools (maintainer). A "Developer Tools Position" submenu inside More Tools (three levels deep) was rejected. Developer Tools and Responsive Design Mode moved out of More Tools into it. |
+| How is DevTools' own "Dock side" row shown? | Kondor's DevTools script adds `can_dock=true` and swaps DevTools' docked layout for the undocked one, so no empty page placeholder appears; the screencast toggle that comes with it is hidden (it looked like a second device toolbar button). It uses DevTools internals (`AdvancedApp`, `DockController`, `ScreencastApp`); if they change in a Qt update, the menu in Kondor still works and the tests in `tests/browser/responsive/test_devtoolsdock.py` fail. |
+| Global or per tab? | The last choice is global and remembered; each open DevTools keeps its own place, so a change does not pop out windows for every tab. A UI preference, so private tabs save it too. |

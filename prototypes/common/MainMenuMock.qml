@@ -1,5 +1,5 @@
 // Main (hamburger) menu reorganized in #93: 13 rows grouped by intent.
-// `openSubmenu`: "" (none), "history", "tools", "help" or "profiles" shows that submenu next to it.
+// `openSubmenu`: "" (none), "history", "tools", "devtools", "help" or "profiles" shows that submenu next to it.
 // `withProfiles` adds the Profiles submenu of #349 after the New… rows.
 import QtQuick
 import QtQuick.Controls
@@ -13,6 +13,10 @@ Item {
     property bool withProfiles: false
     // #384: the "Hide Toolbars" toggle under the zoom row
     property bool withHideToolbars: false
+    // Developer tools position: a "Developer Tools" submenu after More Tools, with this
+    // position checked; Developer Tools and Responsive Design Mode leave More Tools.
+    property string devToolsPosition: ""
+    readonly property bool withDevToolsMenu: devToolsPosition !== ""
 
     // Submenus open to the left of the main menu, level with their row.
     function placeSubmenu(submenu, title) {
@@ -82,6 +86,7 @@ Item {
         }
         MenuSeparator {}
         Menu { id: toolsRow; title: "More Tools"; icon.name: "tools"; popupType: Popup.Item }
+        Menu { id: devToolsRow; title: "Developer Tools"; icon.name: "code-context"; popupType: Popup.Item }
         MenuSeparator {}
         MenuItem { text: "Configure Kondor Browser…"; icon.name: "configure"; action: Action { shortcut: "Ctrl+," } }
         Menu { id: helpRow; title: "Help"; icon.name: "help-contents"; popupType: Popup.Item }
@@ -108,9 +113,36 @@ Item {
     SubmenuMock {
         id: toolsMenu
         menuWidth: 280
-        MenuItem { text: "Developer Tools"; icon.name: "code-context"; action: Action { shortcut: "F12" } }
+        MenuItem { visible: !root.withDevToolsMenu; height: visible ? implicitHeight : 0; text: "Developer Tools"; icon.name: "code-context"; action: Action { shortcut: "F12" } }
         MenuItem { text: "Save as PDF…"; icon.name: "document-export" }
+        MenuItem { visible: root.withDevToolsMenu; height: visible ? implicitHeight : 0; text: "Take Screenshot…"; icon.name: "select-rectangular"; action: Action { shortcut: "Ctrl+Shift+S" } }
         MenuItem { text: "Site Permissions…"; icon.name: "security-high" }
+    }
+
+    SubmenuMock {
+        id: devToolsMenu
+        menuWidth: 320
+        MenuItem { text: "Show Developer Tools"; checkable: true; checked: true; action: Action { shortcut: "F12" } }
+        MenuItem { text: "Responsive Design Mode"; checkable: true; action: Action { shortcut: "Ctrl+Shift+M" } }
+        // Section title (patterns.md): icon, bold label, separator; not a disabled item.
+        Item {
+            implicitHeight: positionTitle.implicitHeight + Kirigami.Units.largeSpacing
+            Accessible.role: Accessible.Heading
+            Accessible.name: positionTitle.text
+            RowLayout {
+                anchors.fill: parent
+                anchors.leftMargin: Kirigami.Units.largeSpacing
+                anchors.rightMargin: Kirigami.Units.largeSpacing
+                spacing: Kirigami.Units.smallSpacing
+                Kirigami.Icon { source: "view-split-left-right"; implicitWidth: Kirigami.Units.iconSizes.small; implicitHeight: implicitWidth }
+                Label { id: positionTitle; text: "Position"; font.bold: true; color: Kirigami.Theme.textColor }
+                Kirigami.Separator { Layout.fillWidth: true }
+            }
+        }
+        MenuItem { text: "Bottom"; checkable: true; autoExclusive: true; checked: root.devToolsPosition === "bottom" }
+        MenuItem { text: "Left"; checkable: true; autoExclusive: true; checked: root.devToolsPosition === "left" }
+        MenuItem { text: "Right"; checkable: true; autoExclusive: true; checked: root.devToolsPosition === "right" }
+        MenuItem { text: "Separate Window"; checkable: true; autoExclusive: true; checked: root.devToolsPosition === "undocked" }
     }
 
     Component {
@@ -144,12 +176,15 @@ Item {
         onTriggered: {
             if (root.openSubmenu === "history") root.placeSubmenu(historyMenu, "History")
             else if (root.openSubmenu === "tools") root.placeSubmenu(toolsMenu, "More Tools")
+            else if (root.openSubmenu === "devtools") root.placeSubmenu(devToolsMenu, "Developer Tools")
             else if (root.openSubmenu === "help") root.placeSubmenu(helpMenu, "Help")
             else if (root.openSubmenu === "profiles") root.placeSubmenu(profilesMenu, "Profiles")
         }
     }
 
     Component.onCompleted: {
+        if (!root.withDevToolsMenu)
+            mainMenu.removeMenu(devToolsRow)
         if (root.withProfiles)
             mainMenu.insertMenu(4, profilesRow.createObject(mainMenu))
         mainMenu.open()
