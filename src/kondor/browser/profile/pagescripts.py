@@ -104,6 +104,12 @@ TRANSLATE_COLLECT = PageScript(
 TRANSLATE_PAGE = PageScript(
     "kondor-translate-page", ":/scripts/translatepage.js", ScriptWorldId.ApplicationWorld
 )
+WIDEVINE_GUARD = PageScript(
+    "kondor-widevine-guard", ":/scripts/widevineguard.js", ScriptWorldId.MainWorld
+)
+WIDEVINE_WATCH = PageScript(
+    "kondor-widevine-watch", ":/scripts/widevinewatch.js", ScriptWorldId.ApplicationWorld
+)
 DEVTOOLS_ROUTING = PageScript(
     DEVTOOLS_ROUTING_SCRIPT, DEVTOOLS_ROUTING_RESOURCE, ScriptWorldId.MainWorld
 )
@@ -133,6 +139,11 @@ def install_translate_scripts(collection: QObject | None) -> None:
     install_page_script(collection, TRANSLATE_PAGE, "page translation")
 
 
+def install_widevine_scripts(collection: QObject | None) -> None:
+    install_page_script(collection, WIDEVINE_GUARD, "the Widevine offer")
+    install_page_script(collection, WIDEVINE_WATCH, "the Widevine offer")
+
+
 def install_devtools_routing(collection: QObject | None) -> None:
     install_page_script(collection, DEVTOOLS_ROUTING, "responsive design mode in Developer Tools")
 
@@ -157,6 +168,7 @@ def install(profile: QQuickWebEngineProfile) -> None:
     install_media_scripts(collection)
     install_popup_scripts(collection)
     install_translate_scripts(collection)
+    install_widevine_scripts(collection)
     install_devtools_routing(collection)
     if not profile.isOffTheRecord():
         install_passwords_script(collection)

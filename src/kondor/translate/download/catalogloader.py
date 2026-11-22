@@ -3,9 +3,9 @@ from typing import NamedTuple
 from PySide6.QtCore import QObject, Signal
 from PySide6.QtNetwork import QNetworkAccessManager
 
+from kondor.core.download.jsonfetch import fetch_json
 from kondor.translate.catalog.records import FileRecord
 from kondor.translate.catalog.selection import PairFiles, select_engine, select_models
-from kondor.translate.download.jsonfetch import fetch_json
 
 SERVER = "https://firefox.settings.services.mozilla.com/v1/"
 RECORDS = SERVER + "buckets/main/collections/{}/records"

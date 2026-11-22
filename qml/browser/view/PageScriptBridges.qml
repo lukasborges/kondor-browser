@@ -46,6 +46,11 @@ Item {
         tab: root.tab
     }
 
+    WidevineBridge {
+        id: widevineBridge
+        tab: root.tab
+    }
+
     ExtensionBridge {
         id: extensionBridge
         tab: root.tab
@@ -58,6 +63,7 @@ Item {
             registerObject("kondorMedia", mediaBridge.pageApi())
             registerObject("kondorPopups", popupBridge.pageApi())
             registerObject("kondorTranslate", translateBridge.pageApi())
+            registerObject("kondorWidevine", widevineBridge.pageApi())
             if (!root.tab.isPrivate)
                 registerObject("kondorPasswords", passwordBridge.pageApi())
         }

@@ -3,6 +3,7 @@ from collections.abc import Callable
 
 from PySide6.QtCore import QUrl
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
+from shiboken6 import isValid
 
 TIMEOUT_MILLISECONDS = 30_000
 JsonCallback = Callable[[object | None], None]
@@ -34,6 +35,9 @@ def fetch_json(manager: QNetworkAccessManager, url: str, callback: JsonCallback)
 
 
 def finish(reply: QNetworkReply, callback: JsonCallback) -> None:
+    if not isValid(reply):
+        return
+    reply.finished.disconnect()
     result = reply_to_json(reply)
     reply.deleteLater()
     callback(result)

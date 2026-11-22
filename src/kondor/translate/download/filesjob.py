@@ -1,13 +1,13 @@
 from PySide6.QtCore import QObject, Signal
 from PySide6.QtNetwork import QNetworkAccessManager
 
+from kondor.core.download.filedownloader import FileDownloader, FileTask
 from kondor.translate.download.bundles import (
     Bundle,
     bundle_tasks,
     file_names,
     total_bytes,
 )
-from kondor.translate.download.filedownloader import FileDownloader, FileTask
 from kondor.translate.storage.translationstore import TranslationStore
 
 

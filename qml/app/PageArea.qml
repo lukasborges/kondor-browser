@@ -43,6 +43,11 @@ ColumnLayout {
         Layout.fillWidth: true
     }
 
+    WidevineBar {
+        tab: root.tabs.currentTab
+        Layout.fillWidth: true
+    }
+
     UserScriptBar {
         tab: root.tabs.currentTab
         Layout.fillWidth: true

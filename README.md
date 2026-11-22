@@ -71,6 +71,7 @@ See what's coming next on the [Roadmap](https://github.com/users/lukasborges/pro
 - **Find in page**, **zoom per site** and **spell checking**
 - **Print**, **save as PDF**, **save the page** or **take a screenshot**
 - **Full screen** for videos and windows, and hide the toolbars to show only the page
+- **Protected content**: watch Netflix and other DRM video after a one-click Widevine download
 
 ### Library
 - **Bookmarks** with a panel, a drag-and-drop toolbar, folders and Firefox/Chrome import
@@ -282,6 +283,7 @@ dialogs and context menus).
 
 - [Mozilla Readability](https://github.com/mozilla/readability) (Apache-2.0), vendored in `3rdparty/readability/` with its license, powers reader mode.
 - [Mozilla Bergamot](https://github.com/mozilla/firefox-translations) translation engine (MPL-2.0), its glue code vendored in `3rdparty/bergamot/` with its license, and Mozilla's language models translate pages on your computer.
+- Google's Widevine module plays protected video. It is not shipped with Kondor: it is downloaded from Google when you ask for it, using the address Firefox publishes.
 
 ## License
 

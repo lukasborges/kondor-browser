@@ -2529,19 +2529,6 @@
         <source>Restart Now</source>
         <translation>立即重启</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>重启 %1</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>下载仍在进行中。仍要重启吗?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>重启</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2599,6 +2586,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>关闭响应式模式</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>重启 %1</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>下载仍在进行中。仍要重启吗?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>重启</translation>
     </message>
 </context>
 <context>
@@ -3726,6 +3729,53 @@
     <message>
         <source>Close</source>
         <translation>关闭</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>下载 Widevine</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>重试</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>立即重启</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>正在下载 Widevine…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>正在下载 Widevine：%1 / %2 MB</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>无法下载 Widevine 模块。</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>Widevine 已就绪。请重新启动 Kondor 以播放受保护的视频。</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; 需要 Google 的 Widevine 模块才能播放受保护的视频。</translation>
     </message>
 </context>
 <context>

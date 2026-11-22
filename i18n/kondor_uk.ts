@@ -2557,19 +2557,6 @@
         <source>Restart Now</source>
         <translation>Перезапустити зараз</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>Перезапуск %1</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>Завантаження ще триває. Усе одно перезапустити?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>Перезапустити</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2627,6 +2614,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>Закрити адаптивний режим</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>Перезапуск %1</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>Завантаження ще триває. Усе одно перезапустити?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>Перезапустити</translation>
     </message>
 </context>
 <context>
@@ -3754,6 +3757,53 @@
     <message>
         <source>Close</source>
         <translation>Закрити</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>Завантажити Widevine</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Скасувати</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>Спробувати ще раз</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>Перезапустити зараз</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Закрити</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>Завантаження Widevine…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>Завантаження Widevine: %1 з %2 МБ</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>Не вдалося завантажити модуль Widevine.</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>Widevine готовий. Перезапустіть Kondor, щоб відтворювати захищене відео.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>Для відтворення захищеного відео на &lt;b&gt;%1&lt;/b&gt; потрібен модуль Widevine від Google.</translation>
     </message>
 </context>
 <context>

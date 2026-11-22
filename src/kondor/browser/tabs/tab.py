@@ -18,6 +18,7 @@ from kondor.browser.tabs.groups.tabgroup import TabGroup
 from kondor.browser.tabs.tabviewstate import TabViewState
 from kondor.site.identity.tabidentity import TabIdentity
 from kondor.translate.tabtranslation import TabTranslation
+from kondor.widevine.tabwidevine import TabWidevine
 
 BLANK_PAGE = QUrl("about:blank")
 
@@ -73,6 +74,7 @@ class Tab(TabViewState):
         self._sleep = TabSleep(self)
         self._media = TabMedia(self)
         self._audio = TabAudio(self)
+        self._widevine = TabWidevine(self)
 
     def _create_responsive_group(self, profile: QQuickWebEngineProfile | None) -> None:
         self._responsive = TabResponsive(profile, self._is_private, self)
@@ -94,6 +96,7 @@ class Tab(TabViewState):
     audio = Property(TabAudio, lambda self: self._audio, constant=True)
     popups = Property(TabPopups, lambda self: self._popups, constant=True)
     translation = Property(TabTranslation, lambda self: self._translation, constant=True)
+    widevine = Property(TabWidevine, lambda self: self._widevine, constant=True)
     identity = Property(TabIdentity, lambda self: self._identity, constant=True)
     responsive = Property(TabResponsive, lambda self: self._responsive, constant=True)
     agent = Property(TabAgent, lambda self: self._agent, constant=True)
@@ -124,6 +127,7 @@ class Tab(TabViewState):
         self._security.update_for(url)
         self._popups.update_for(url)
         self._translation.update_for(url)
+        self._widevine.update_for(url)
         self._identity.update_for(url)
         self._responsive.update_for(url)
         self._passwords.update_usernames_for(url)
@@ -147,6 +151,7 @@ class Tab(TabViewState):
             self._site_reload.dismiss()
             self._identity.dismiss()
             self._translation.reset()
+            self._widevine.reset()
         super().setLoading(loading)
 
     def _set_new_tab_page(self, new_tab_page: bool) -> None:

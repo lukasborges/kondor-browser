@@ -26,6 +26,9 @@ from kondor.translate.library import TranslationLibrary
 from kondor.translate.page.translatebridge import TranslateBridge
 from kondor.translate.tablists import TabTranslationLists
 from kondor.translate.tabtranslation import TabTranslation
+from kondor.widevine.page.widevinebridge import WidevineBridge
+from kondor.widevine.tabwidevine import TabWidevine
+from kondor.widevine.widevine import Widevine
 
 QML_TYPES: tuple[QmlType, ...] = (
     QmlType(AgentPointer, "AgentPointer", QmlKind.SINGLETON),
@@ -52,6 +55,9 @@ QML_TYPES: tuple[QmlType, ...] = (
     QmlType(TabTranslationLists, "TabTranslationLists", QmlKind.UNCREATABLE),
     QmlType(TranslateBridge, "TranslateBridge", QmlKind.CREATABLE),
     QmlType(TranslationLibrary, "TranslationLibrary", QmlKind.SINGLETON),
+    QmlType(TabWidevine, "TabWidevine", QmlKind.UNCREATABLE),
+    QmlType(Widevine, "Widevine", QmlKind.SINGLETON),
+    QmlType(WidevineBridge, "WidevineBridge", QmlKind.CREATABLE),
     QmlType(TabModel, "TabModel", QmlKind.CREATABLE),
     QmlType(TabStripModel, "TabStripModel", QmlKind.CREATABLE),
     QmlType(ZoomManager, "ZoomManager", QmlKind.SINGLETON),

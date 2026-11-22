@@ -2543,19 +2543,6 @@
         <source>Restart Now</source>
         <translation>Nu herstarten</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>%1 herstarten</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>Er zijn nog downloads bezig. Toch herstarten?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>Herstarten</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2613,6 +2600,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>Responsieve modus sluiten</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>%1 herstarten</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>Er zijn nog downloads bezig. Toch herstarten?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>Herstarten</translation>
     </message>
 </context>
 <context>
@@ -3740,6 +3743,53 @@
     <message>
         <source>Close</source>
         <translation>Sluiten</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>Widevine downloaden</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Annuleren</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>Opnieuw proberen</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>Nu herstarten</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Sluiten</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>Widevine downloaden…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>Widevine downloaden: %1 van %2 MB</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>Kan de Widevine-module niet downloaden.</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>Widevine is gereed. Herstart Kondor om beveiligde video af te spelen.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; heeft de Widevine-module van Google nodig om beveiligde video af te spelen.</translation>
     </message>
 </context>
 <context>

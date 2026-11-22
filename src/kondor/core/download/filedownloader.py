@@ -4,7 +4,7 @@ from typing import NamedTuple
 from PySide6.QtCore import QFile, QIODevice, QObject, QUrl, Signal
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
 
-from kondor.translate.storage.filehash import matches_hash
+from kondor.core.download.filehash import DEFAULT_ALGORITHM, matches_hash
 
 STALL_TIMEOUT_MILLISECONDS = 60_000
 
@@ -14,6 +14,7 @@ class FileTask(NamedTuple):
     destination: Path
     hash: str
     size: int
+    algorithm: str = DEFAULT_ALGORITHM
 
 
 class FileDownloader(QObject):
@@ -63,4 +64,4 @@ class FileDownloader(QObject):
         ok = reply.error() == QNetworkReply.NetworkError.NoError
         reply.deleteLater()
         self._reply = None
-        self.finished.emit(ok and matches_hash(task.destination, task.hash))
+        self.finished.emit(ok and matches_hash(task.destination, task.hash, task.algorithm))

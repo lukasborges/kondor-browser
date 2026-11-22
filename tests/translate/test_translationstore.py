@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-from kondor.translate.storage.filehash import matches_hash
+from kondor.core.download.filehash import matches_hash
 from kondor.translate.storage.translationstore import TranslationStore
 
 PAYLOAD_BYTES = 100
