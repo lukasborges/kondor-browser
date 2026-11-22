@@ -2543,19 +2543,6 @@
         <source>Restart Now</source>
         <translation>Reinicia ara</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>Reinicia el %1</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>Les baixades encara estan en curs. Voleu reiniciar igualment?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>Reinicia</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2613,6 +2600,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>Tanca el mode adaptable</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>Reinicia el %1</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>Les baixades encara estan en curs. Voleu reiniciar igualment?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>Reinicia</translation>
     </message>
 </context>
 <context>
@@ -3740,6 +3743,53 @@
     <message>
         <source>Close</source>
         <translation>Tanca</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>Baixa el Widevine</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel·la</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>Torna-ho a provar</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>Reinicia ara</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Tanca</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>S&apos;està baixant el Widevine…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>S&apos;està baixant el Widevine: %1 de %2 MB</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>No s&apos;ha pogut baixar el mòdul Widevine.</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>El Widevine està a punt. Reinicieu el Kondor per a reproduir vídeo protegit.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; necessita el mòdul Widevine de Google per a reproduir vídeo protegit.</translation>
     </message>
 </context>
 <context>

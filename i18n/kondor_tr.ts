@@ -2529,19 +2529,6 @@
         <source>Restart Now</source>
         <translation>Şimdi Yeniden Başlat</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>%1 Uygulamasını Yeniden Başlat</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>İndirmeler hâlâ sürüyor. Yine de yeniden başlatılsın mı?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>Yeniden Başlat</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2599,6 +2586,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>Duyarlı Kipi Kapat</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>%1 Uygulamasını Yeniden Başlat</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>İndirmeler hâlâ sürüyor. Yine de yeniden başlatılsın mı?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>Yeniden Başlat</translation>
     </message>
 </context>
 <context>
@@ -3726,6 +3729,53 @@
     <message>
         <source>Close</source>
         <translation>Kapat</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>Widevine&apos;ı İndir</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>İptal</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>Yeniden Dene</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>Şimdi Yeniden Başlat</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Kapat</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>Widevine indiriliyor…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>Widevine indiriliyor: %1 / %2 MB</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>Widevine modülü indirilemedi.</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>Widevine hazır. Korumalı videoyu oynatmak için Kondor&apos;u yeniden başlatın.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>&lt;b&gt;%1&lt;/b&gt;, korumalı videoyu oynatmak için Google&apos;ın Widevine modülüne ihtiyaç duyuyor.</translation>
     </message>
 </context>
 <context>

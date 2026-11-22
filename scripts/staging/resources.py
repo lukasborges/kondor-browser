@@ -68,6 +68,14 @@ RESOURCE_GROUPS = (
     ),
     ResourceGroup(
         "/scripts",
+        "src/kondor/widevine/page",
+        (
+            "src/kondor/widevine/page/widevineguard.js",
+            "src/kondor/widevine/page/widevinewatch.js",
+        ),
+    ),
+    ResourceGroup(
+        "/scripts",
         "src/kondor/translate/page",
         (
             "src/kondor/translate/page/translatecollect.js",

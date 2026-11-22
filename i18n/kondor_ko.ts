@@ -2529,19 +2529,6 @@
         <source>Restart Now</source>
         <translation>지금 다시 시작</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>%1 다시 시작</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>다운로드가 아직 진행 중입니다. 그래도 다시 시작하시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>다시 시작</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2599,6 +2586,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>반응형 모드 닫기</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>%1 다시 시작</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>다운로드가 아직 진행 중입니다. 그래도 다시 시작하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>다시 시작</translation>
     </message>
 </context>
 <context>
@@ -3726,6 +3729,53 @@
     <message>
         <source>Close</source>
         <translation>닫기</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>Widevine 다운로드</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>다시 시도</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>지금 다시 시작</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>Widevine 다운로드 중…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>Widevine 다운로드 중: %1/%2MB</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>Widevine 모듈을 다운로드할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>Widevine이 준비되었습니다. 보호된 동영상을 재생하려면 Kondor를 다시 시작하십시오.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>&lt;b&gt;%1&lt;/b&gt;에서 보호된 동영상을 재생하려면 Google의 Widevine 모듈이 필요합니다.</translation>
     </message>
 </context>
 <context>

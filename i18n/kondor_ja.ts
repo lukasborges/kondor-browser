@@ -2529,19 +2529,6 @@
         <source>Restart Now</source>
         <translation>今すぐ再起動</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>%1 を再起動</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>ダウンロードが進行中です。それでも再起動しますか?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>再起動</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2599,6 +2586,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>レスポンシブモードを閉じる</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>%1 を再起動</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>ダウンロードが進行中です。それでも再起動しますか?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>再起動</translation>
     </message>
 </context>
 <context>
@@ -3726,6 +3729,53 @@
     <message>
         <source>Close</source>
         <translation>閉じる</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>Widevine をダウンロード</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>キャンセル</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>再試行</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>今すぐ再起動</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>閉じる</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>Widevine をダウンロード中…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>Widevine をダウンロード中: %1 / %2 MB</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>Widevine モジュールをダウンロードできませんでした。</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>Widevine の準備ができました。保護された動画を再生するには Kondor を再起動してください。</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; で保護された動画を再生するには Google の Widevine モジュールが必要です。</translation>
     </message>
 </context>
 <context>

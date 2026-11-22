@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import NamedTuple
 
+from kondor.core.download.filedownloader import FileTask
 from kondor.translate.catalog.records import FileRecord
 from kondor.translate.download.catalogloader import Catalog
-from kondor.translate.download.filedownloader import FileTask
 from kondor.translate.storage.translationstore import ENGINE_FILE, Pair, TranslationStore
 
 ENGINE_KIND = "engine"

@@ -2557,19 +2557,6 @@
         <source>Restart Now</source>
         <translation>Restartovat nyní</translation>
     </message>
-    <message>
-        <source>Restart %1</source>
-        <extracomment>%1 is the application name</extracomment>
-        <translation>Restartovat %1</translation>
-    </message>
-    <message>
-        <source>Downloads are still in progress. Restart anyway?</source>
-        <translation>Stahování stále probíhá. Přesto restartovat?</translation>
-    </message>
-    <message>
-        <source>Restart</source>
-        <translation>Restartovat</translation>
-    </message>
 </context>
 <context>
     <name>RenameBookmarkDialog</name>
@@ -2627,6 +2614,22 @@
     <message>
         <source>Close Responsive Mode</source>
         <translation>Zavřít responzivní režim</translation>
+    </message>
+</context>
+<context>
+    <name>RestartGuard</name>
+    <message>
+        <source>Restart %1</source>
+        <extracomment>%1 is the application name</extracomment>
+        <translation>Restartovat %1</translation>
+    </message>
+    <message>
+        <source>Downloads are still in progress. Restart anyway?</source>
+        <translation>Stahování stále probíhá. Přesto restartovat?</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>Restartovat</translation>
     </message>
 </context>
 <context>
@@ -3754,6 +3757,53 @@
     <message>
         <source>Close</source>
         <translation>Zavřít</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBar</name>
+    <message>
+        <source>Download Widevine</source>
+        <translation>Stáhnout Widevine</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Zrušit</translation>
+    </message>
+    <message>
+        <source>Try Again</source>
+        <translation>Zkusit znovu</translation>
+    </message>
+    <message>
+        <source>Restart Now</source>
+        <translation>Restartovat nyní</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Zavřít</translation>
+    </message>
+</context>
+<context>
+    <name>WidevineBarMessage</name>
+    <message>
+        <source>Downloading Widevine…</source>
+        <translation>Stahování Widevine…</translation>
+    </message>
+    <message>
+        <source>Downloading Widevine: %1 of %2 MB</source>
+        <translation>Stahování Widevine: %1 z %2 MB</translation>
+    </message>
+    <message>
+        <source>Could not download the Widevine module.</source>
+        <translation>Modul Widevine se nepodařilo stáhnout.</translation>
+    </message>
+    <message>
+        <source>Widevine is ready. Restart Kondor to play protected video.</source>
+        <translation>Widevine je připraven. Pro přehrávání chráněného videa restartujte Kondor.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; needs Google&apos;s Widevine module to play protected video.</source>
+        <extracomment>%1 is the site host, in bold</extracomment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; potřebuje modul Widevine od Googlu k přehrávání chráněného videa.</translation>
     </message>
 </context>
 <context>

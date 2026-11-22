@@ -25,6 +25,7 @@ from kondor.profiles.activeprofile import ActiveProfile
 from kondor.profiles.registry.profileregistry import ProfileRegistry
 from kondor.profiles.startup.profilechoice import select_profile
 from kondor.profiles.startup.profilechooser import ask_for_profile
+from kondor.widevine.widevineflag import load_installed_widevine
 
 
 def run_browser(app: QApplication, single_instance: SingleInstance) -> int:
@@ -43,6 +44,7 @@ def start_application() -> QApplication | None:
     if not load_staged_resources(staged_build_directory()):
         return None
     set_up_identity()
+    load_installed_widevine()
     return app
 
 

@@ -35,8 +35,8 @@ Prototypes: `452-drm-offer`, `452b-drm-downloading`, `452c-drm-restart` (approve
   `com.widevine.alpha` (or any `com.widevine.*` key system) and the call is rejected because the
   key system is not available, the script tells Kondor (DOM event read by the isolated-world
   bridge). The page's own call is not changed: it still gets the rejection.
-- If the module is not installed, the tab shows a bar (`Kirigami.InlineMessage`, Information,
-  icon `media-playback-start`, close button):
+- If the module is not installed, the tab shows a bar (the shared `InlineBar`, like the
+  permission bar; icon `media-playback-start`, close button):
   "**<host>** needs Google's Widevine module to play protected video." with the action
   **Download Widevine** (`download`).
 - The bar shows once per page load; closing it hides it until the next load. It never shows when
@@ -61,13 +61,13 @@ Prototypes: `452-drm-offer`, `452b-drm-downloading`, `452c-drm-restart` (approve
   `AppDataLocation/widevine/<version>/`, writes `AppDataLocation/widevine/current` with the
   version, and deletes older versions. Nothing else from the archive is kept.
 - **Cancel** stops the download and deletes the partial file. A failure (offline, hash mismatch,
-  missing file in the archive) turns the bar into a Warning: "Could not download the Widevine
+  missing file in the archive) turns the bar into a warning (`dialog-warning`): "Could not download the Widevine
   module." with **Try Again**.
 - Architectures other than x86_64 get no offer (Mozilla's manifest has no Linux ARM entry).
 
 ### 3. Restart (`452c-drm-restart`)
 
-- When the module is in place, the bar becomes Positive (`view-refresh`): "Widevine is ready.
+- When the module is in place, the bar shows (`view-refresh`): "Widevine is ready.
   Restart Kondor to play protected video." with **Restart Now** (`view-refresh`), which calls the
   same restart as #419 (downloads guard, session saved, every window and tab back).
 - At startup, if `AppDataLocation/widevine/current` names an installed version, Kondor adds
@@ -137,4 +137,5 @@ Separate instance with isolated XDG folders under `~/kondor-test`, `--new-instan
 | Where does the download address come from? | Firefox's `widevinecdm.json`: Mozilla keeps it current with the version, Google's file address and its SHA-512. Google's old `dl.google.com/widevine-cdm/versions.txt` is gone (404). |
 | Ask first or download on its own? | Ask, with the bar, only when a page needs it (KDE HIG: no surprise downloads); no setting is needed. |
 | Progress bar in the bar? | No: the InlineMessage has no room for it without covering the text; the text shows N of M MB (prototype review). |
+| InlineMessage or InlineBar? | `InlineBar`, like every other page bar in Kondor (permissions, passwords, user scripts); the prototypes used `Kirigami.InlineMessage` colors, the wording, icons and buttons are the same. |
 | Restart? | Required: Qt WebEngine reads `--widevine-path` only at startup; reuse Restart Now (#419). |
