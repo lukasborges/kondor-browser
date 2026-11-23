@@ -1,6 +1,7 @@
 import pytest
 from PySide6.QtCore import QUrl
 from PySide6.QtQuick import QQuickWindow
+from pytestqt.exceptions import TimeoutError as WaitTimeoutError
 from pytestqt.qtbot import QtBot
 
 from kondor.browser.tabs.tab import Tab
@@ -36,7 +37,10 @@ def saved_dock_side() -> str:
 
 
 def wait_until_ready(window: QQuickWindow, qtbot: QtBot) -> None:
-    qtbot.waitUntil(lambda: READY_MESSAGE in console_log(window), timeout=LOAD_TIMEOUT)
+    try:
+        qtbot.waitUntil(lambda: READY_MESSAGE in console_log(window), timeout=LOAD_TIMEOUT)
+    except WaitTimeoutError as error:
+        raise AssertionError(f"DevTools console:\n{console_log(window)}") from error
 
 
 def test_side_chosen_in_dev_tools_moves_them_and_is_saved(
