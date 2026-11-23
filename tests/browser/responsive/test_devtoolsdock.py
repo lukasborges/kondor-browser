@@ -27,6 +27,11 @@ REPORT_SCREENCAST = """(() => {
 })()"""
 
 
+DESCRIBE_DEV_TOOLS = """console.log('kondor-test:state', location.href, document.readyState,
+    document.body ? document.body.className : 'no body',
+    !!document.querySelector('body > .root-view'), typeof globalThis.kondorShowDockSide)"""
+
+
 @pytest.fixture(autouse=True)
 def bottom_dock_side(qapp: object, isolated_profile: object) -> None:
     Settings.instance().setProperty("devToolsDockSide", "bottom")
@@ -40,6 +45,8 @@ def wait_until_ready(window: QQuickWindow, qtbot: QtBot) -> None:
     try:
         qtbot.waitUntil(lambda: READY_MESSAGE in console_log(window), timeout=LOAD_TIMEOUT)
     except WaitTimeoutError as error:
+        call_scene(window, "probe", DESCRIBE_DEV_TOOLS)
+        qtbot.wait(1000)
         raise AssertionError(f"DevTools console:\n{console_log(window)}") from error
 
 
