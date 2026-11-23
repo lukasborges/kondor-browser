@@ -220,7 +220,7 @@ On **Fedora** (the original development environment):
 
 ```bash
 sudo dnf install python3 python3-pyside6 python3-jeepney python3-langdetect pyside6-tools kf6-kirigami kf6-qqc2-desktop-style \
-    qt6-qtwebengine hunspell-en-US hunspell-pt-BR
+    qt6-qtwebengine qt6-qtwebengine-devtools hunspell-en-US hunspell-pt-BR
 sudo dnf install python3-pytest python3-pytest-qt python3-mypy ruff dbus-daemon   # development tools
 ```
 
