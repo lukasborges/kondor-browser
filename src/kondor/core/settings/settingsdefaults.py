@@ -40,6 +40,7 @@ FACTORIES: dict[str, Callable[[], object]] = {
     "showBookmarksBar": constant(False),
     "sideBarCollapsed": constant(False),
     "hideToolbars": constant(False),
+    "devToolsDockSide": constant("bottom"),
     "showTopSites": constant(True),
     "hiddenTopSites": empty_list,
     "clearDataOnExit": constant(False),

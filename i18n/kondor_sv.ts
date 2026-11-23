@@ -442,8 +442,8 @@
         <translation>Dölj verktygsrader</translation>
     </message>
     <message>
-        <source>Developer Tools</source>
-        <translation>Utvecklarverktyg</translation>
+        <source>Show Developer Tools</source>
+        <translation>Visa utvecklarverktyg</translation>
     </message>
     <message>
         <source>Responsive Design Mode</source>
@@ -656,6 +656,46 @@
     <message>
         <source>Delete</source>
         <translation>Ta bort</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsMenu</name>
+    <message>
+        <source>Developer Tools</source>
+        <translation>Utvecklarverktyg</translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <extracomment>Section of the Developer Tools menu: where developer tools are shown</extracomment>
+        <translation>Position</translation>
+    </message>
+    <message>
+        <source>Bottom</source>
+        <extracomment>Developer tools docked below the page</extracomment>
+        <translation>Nederst</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <extracomment>Developer tools docked on the left of the page</extracomment>
+        <translation>Till vänster</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <extracomment>Developer tools docked on the right of the page</extracomment>
+        <translation>Till höger</translation>
+    </message>
+    <message>
+        <source>Separate Window</source>
+        <extracomment>Developer tools shown in a window of their own</extracomment>
+        <translation>Separat fönster</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsWindow</name>
+    <message>
+        <source>%1 — Developer Tools</source>
+        <extracomment>Title of the window that holds undocked developer tools; %1 is the inspected page</extracomment>
+        <translation>%1 — Utvecklarverktyg</translation>
     </message>
 </context>
 <context>

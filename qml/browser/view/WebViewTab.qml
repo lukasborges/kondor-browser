@@ -16,7 +16,7 @@ Item {
     function setDevToolsOpen(open) {
         if (open === root.tab.devToolsOpen)
             return
-        pageView.devToolsView = open ? devTools : null
+        pageView.devToolsView = open ? devToolsLayout.view : null
         root.tab.setDevToolsOpen(open)
     }
 
@@ -96,12 +96,15 @@ Item {
         certificates: certificateHandler
     }
 
-    SplitView {
+    DevToolsLayout {
+        id: devToolsLayout
         anchors.fill: parent
-        orientation: Qt.Vertical
+        tab: root.tab
+        onOpenRequested: root.setDevToolsOpen(true)
+        onCloseRequested: root.setDevToolsOpen(false)
 
         PageStage {
-            SplitView.fillHeight: true
+            anchors.fill: parent
             tab: root.tab
 
             PageView {
@@ -116,20 +119,6 @@ Item {
                 certificates: certificateHandler
                 webChannel: scriptBridges.channel
                 onPageContextMenuRequested: function(request) { root.showContextMenu(request) }
-            }
-        }
-
-        WebEngineView {
-            id: devTools
-            objectName: "devTools"
-            visible: root.tab.devToolsOpen
-            SplitView.preferredHeight: root.height * 0.4
-            SplitView.minimumHeight: 100
-            profile: root.tab.profile
-            onWindowCloseRequested: root.setDevToolsOpen(false)
-            onJavaScriptConsoleMessage: function(level, message) {
-                if (message === "kondor:toggle-responsive-mode")
-                    root.tab.responsive.toggle()
             }
         }
     }

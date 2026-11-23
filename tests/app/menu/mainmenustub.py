@@ -57,7 +57,11 @@ ApplicationWindow {
             shortcut: "Ctrl+Shift+F"
             checkable: true
         }
-        readonly property Action devToolsAction: Action { text: "Developer Tools"; shortcut: "F12" }
+        readonly property bool hasPage: false
+        readonly property Action devToolsAction: Action {
+            text: "Show Developer Tools"
+            shortcut: "F12"
+        }
         readonly property Action responsiveModeAction: Action { text: "Responsive Design Mode" }
         readonly property Action saveAsPdfAction: Action { text: "Save as PDF…" }
         readonly property Action screenshotAction: Action { text: "Take Screenshot…" }

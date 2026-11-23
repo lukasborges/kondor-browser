@@ -49,7 +49,7 @@ Tips when editing:
 | #89 App icon without horns | `screenshots/89-icon-without-horns.png` (current icon, target icon, and the target at 48/32/22/16 px), `screenshots/89b-icon-size-in-panel.png` (32 px on a dark panel: current and target next to Dolphin, Firefox and Konqueror) |
 | #13 Page context menu | `13-page-context-menu.qml` |
 | #14 Multiple windows | `14-private-window.qml`, `00-main-menu.qml` |
-| #16 Developer tools | `16-devtools.qml` |
+| #16 Developer tools | `16-devtools.qml`; position: `16b-devtools-dock-side.qml`, `16c-devtools-position-menu.qml`, `16d-devtools-separate-window.qml` (shared mock in `common/DevToolsMock.qml`) |
 | #17 Print / save as PDF | `00-main-menu.qml` |
 | #18 Crashed page | `18-crashed-tab.qml` |
 | #20 Ad and tracker blocking | `20-adblock.qml` |

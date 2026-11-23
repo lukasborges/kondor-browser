@@ -442,8 +442,8 @@
         <translation>Ocultar barras de ferramentas</translation>
     </message>
     <message>
-        <source>Developer Tools</source>
-        <translation>Ferramentas de programador</translation>
+        <source>Show Developer Tools</source>
+        <translation>Mostrar ferramentas de programador</translation>
     </message>
     <message>
         <source>Responsive Design Mode</source>
@@ -656,6 +656,46 @@
     <message>
         <source>Delete</source>
         <translation>Eliminar</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsMenu</name>
+    <message>
+        <source>Developer Tools</source>
+        <translation>Ferramentas de programador</translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <extracomment>Section of the Developer Tools menu: where developer tools are shown</extracomment>
+        <translation>Posição</translation>
+    </message>
+    <message>
+        <source>Bottom</source>
+        <extracomment>Developer tools docked below the page</extracomment>
+        <translation>Em baixo</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <extracomment>Developer tools docked on the left of the page</extracomment>
+        <translation>À esquerda</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <extracomment>Developer tools docked on the right of the page</extracomment>
+        <translation>À direita</translation>
+    </message>
+    <message>
+        <source>Separate Window</source>
+        <extracomment>Developer tools shown in a window of their own</extracomment>
+        <translation>Janela separada</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsWindow</name>
+    <message>
+        <source>%1 — Developer Tools</source>
+        <extracomment>Title of the window that holds undocked developer tools; %1 is the inspected page</extracomment>
+        <translation>%1 — Ferramentas de programador</translation>
     </message>
 </context>
 <context>

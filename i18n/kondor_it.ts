@@ -442,8 +442,8 @@
         <translation>Nascondi le barre degli strumenti</translation>
     </message>
     <message>
-        <source>Developer Tools</source>
-        <translation>Strumenti di sviluppo</translation>
+        <source>Show Developer Tools</source>
+        <translation>Mostra strumenti di sviluppo</translation>
     </message>
     <message>
         <source>Responsive Design Mode</source>
@@ -656,6 +656,46 @@
     <message>
         <source>Delete</source>
         <translation>Elimina</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsMenu</name>
+    <message>
+        <source>Developer Tools</source>
+        <translation>Strumenti di sviluppo</translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <extracomment>Section of the Developer Tools menu: where developer tools are shown</extracomment>
+        <translation>Posizione</translation>
+    </message>
+    <message>
+        <source>Bottom</source>
+        <extracomment>Developer tools docked below the page</extracomment>
+        <translation>In basso</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <extracomment>Developer tools docked on the left of the page</extracomment>
+        <translation>A sinistra</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <extracomment>Developer tools docked on the right of the page</extracomment>
+        <translation>A destra</translation>
+    </message>
+    <message>
+        <source>Separate Window</source>
+        <extracomment>Developer tools shown in a window of their own</extracomment>
+        <translation>Finestra separata</translation>
+    </message>
+</context>
+<context>
+    <name>DevToolsWindow</name>
+    <message>
+        <source>%1 — Developer Tools</source>
+        <extracomment>Title of the window that holds undocked developer tools; %1 is the inspected page</extracomment>
+        <translation>%1 — Strumenti di sviluppo</translation>
     </message>
 </context>
 <context>
