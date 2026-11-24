@@ -140,17 +140,22 @@ def test_icon_shown_by_a_sleeping_view_is_not_stored(tabs: TwoTabs, qtbot: QtBot
     assert favicon_rows() == 0
 
 
-def test_icon_is_stored_again_after_the_view_wakes(tabs: TwoTabs, qtbot: QtBot) -> None:
-    put_first_tab_to_sleep(tabs, qtbot)
-    tabs.call("showPage", FIRST_VIEW)
-    qtbot.waitUntil(lambda: tabs.lifecycle(FIRST_VIEW) != DISCARDED, timeout=LOAD_TIMEOUT)
-    assert sql.run("DELETE FROM favicons") is not None
-    tabs.second.navigateTo(tabs.server.url())
-    qtbot.waitUntil(lambda: favicon_rows() > 0, timeout=LOAD_TIMEOUT)
-
-
 def test_closing_a_sleeping_view_does_not_crash_the_other_view(tabs: TwoTabs, qtbot: QtBot) -> None:
     put_first_tab_to_sleep(tabs, qtbot)
     tabs.call("closeView", FIRST_VIEW)
     tabs.second.navigateTo(tabs.server.url())
     qtbot.waitUntil(lambda: favicon_rows() > 0, timeout=LOAD_TIMEOUT)
+
+
+def wake_first_tab(tabs: TwoTabs, qtbot: QtBot) -> None:
+    tabs.call("showPage", FIRST_VIEW)
+    qtbot.waitUntil(lambda: tabs.lifecycle(FIRST_VIEW) != DISCARDED, timeout=LOAD_TIMEOUT)
+    qtbot.wait(SETTLE_MILLISECONDS)
+
+
+def test_icon_of_a_woken_view_is_not_stored(tabs: TwoTabs, qtbot: QtBot) -> None:
+    put_first_tab_to_sleep(tabs, qtbot)
+    wake_first_tab(tabs, qtbot)
+    FaviconStore.instance().store(tabs.server.url(), QUrl(tabs.icon(FIRST_VIEW)))
+    qtbot.wait(SETTLE_MILLISECONDS)
+    assert favicon_rows() == 0

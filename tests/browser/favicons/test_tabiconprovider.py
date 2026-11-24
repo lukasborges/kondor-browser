@@ -37,13 +37,13 @@ def fetch(provider: TabIconProvider, qtbot: QtBot, icon_id: str = ICON_ID) -> QI
     return image_of(response)
 
 
-def sleeping_view(store: FaviconStore) -> QObject:
+def discarded_view(store: FaviconStore) -> QObject:
     view = QObject()
-    store.markSleeping(view, ICON)
+    store.markDiscarded(view, ICON)
     return view
 
 
-def test_awake_icon_is_fetched_from_qt(qt_provider: FakeFaviconProvider, qtbot: QtBot) -> None:
+def test_live_icon_is_fetched_from_qt(qt_provider: FakeFaviconProvider, qtbot: QtBot) -> None:
     assert not fetch(TabIconProvider(), qtbot).isNull()
     assert [request[0] for request in qt_provider.requests] == [ICON_ID]
 
@@ -55,22 +55,22 @@ def test_cached_icon_is_not_requested_twice(qt_provider: FakeFaviconProvider, qt
     assert len(qt_provider.requests) == 1
 
 
-def test_sleeping_icon_never_reaches_qt(qt_provider: FakeFaviconProvider, qtbot: QtBot) -> None:
-    view = sleeping_view(FaviconStore.instance())
+def test_discarded_icon_never_reaches_qt(qt_provider: FakeFaviconProvider, qtbot: QtBot) -> None:
+    view = discarded_view(FaviconStore.instance())
     fetch(TabIconProvider(), qtbot)
     assert qt_provider.requests == []
-    FaviconStore.instance().markAwake(view)
+    FaviconStore.instance().forgetView(view)
 
 
-def test_sleeping_icon_is_served_from_memory(
+def test_discarded_icon_is_served_from_memory(
     qt_provider: FakeFaviconProvider, qtbot: QtBot
 ) -> None:
     provider = TabIconProvider()
     fetch(provider, qtbot)
-    view = sleeping_view(FaviconStore.instance())
+    view = discarded_view(FaviconStore.instance())
     assert not fetch(provider, qtbot).isNull()
     assert len(qt_provider.requests) == 1
-    FaviconStore.instance().markAwake(view)
+    FaviconStore.instance().forgetView(view)
 
 
 def test_icon_arrives_when_qt_response_wrapper_is_invalidated(

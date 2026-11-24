@@ -42,11 +42,9 @@ Item {
                               function(hasEditedFields) { root.discardUnlessEdited(hasEditedFields) })
     }
 
-    function updateSleepingIcon() {
+    function rememberDiscardedIcon() {
         if (isDiscarded())
-            FaviconStore.markSleeping(webView, webView.icon)
-        else
-            FaviconStore.markAwake(webView)
+            FaviconStore.markDiscarded(webView, webView.icon)
     }
 
     function wakeUp() {
@@ -64,10 +62,10 @@ Item {
         target: root.webView
         function onLifecycleStateChanged() {
             root.tab.sleep.setSleeping(root.isDiscarded())
-            root.updateSleepingIcon()
+            root.rememberDiscardedIcon()
         }
         function onVisibleChanged() { if (root.webView.visible) root.wakeUp() }
     }
 
-    Component.onDestruction: FaviconStore.markAwake(webView)
+    Component.onDestruction: FaviconStore.forgetView(webView)
 }

@@ -79,7 +79,7 @@ class FaviconStore(QObject):
         super().__init__()
         self._engine: QQmlEngine | None = None
         self._revision = 0
-        self._sleeping_icons: dict[int, str] = {}
+        self._discarded_icons: dict[int, str] = {}
 
     @classmethod
     def instance(cls) -> "FaviconStore":
@@ -100,24 +100,28 @@ class FaviconStore(QObject):
         icon_id = provider_icon_id(iconSource)
         if self._engine is None or pageUrl.scheme() not in WEB_SCHEMES or not icon_id:
             return
-        if icon_id in self._sleeping_icons.values():
+        if self.is_shown_by_discarded_view(icon_id):
             return
         response = self.request_icon(self._engine, icon_id)
         if response is not None:
             self.follow_response(response, pageUrl.host())
 
-    # Qt's favicon provider can pick a sleeping view of the same icon and crash in
-    # WebContentsAdapter::icon(): https://github.com/lukasborges/kondor-browser/issues/390
+    # A view discarded once keeps no favicon driver, even after it wakes, and Qt's favicon
+    # provider can pick it and crash in WebContentsAdapter::icon():
+    # https://github.com/lukasborges/kondor-browser/issues/455
     @Slot(QObject, QUrl)
-    def markSleeping(self, view: QObject, iconSource: QUrl) -> None:  # noqa: N802, N803
-        self._sleeping_icons[shiboken6.getCppPointer(view)[0]] = provider_icon_id(iconSource)
+    def markDiscarded(self, view: QObject, iconSource: QUrl) -> None:  # noqa: N802, N803
+        self._discarded_icons[shiboken6.getCppPointer(view)[0]] = provider_icon_id(iconSource)
 
     @Slot(QObject)
-    def markAwake(self, view: QObject) -> None:  # noqa: N802
-        self._sleeping_icons.pop(shiboken6.getCppPointer(view)[0], None)
+    def forgetView(self, view: QObject) -> None:  # noqa: N802
+        self._discarded_icons.pop(shiboken6.getCppPointer(view)[0], None)
 
-    def request_awake_icon(self, icon_id: str) -> QQuickImageResponse | None:
-        if self._engine is None or icon_id in self._sleeping_icons.values():
+    def is_shown_by_discarded_view(self, icon_id: str) -> bool:
+        return icon_id in self._discarded_icons.values()
+
+    def request_icon_of_live_views(self, icon_id: str) -> QQuickImageResponse | None:
+        if self._engine is None or self.is_shown_by_discarded_view(icon_id):
             return None
         return self.request_icon(self._engine, icon_id)
 
