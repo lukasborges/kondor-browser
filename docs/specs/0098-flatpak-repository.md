@@ -36,11 +36,11 @@ Pages, at `https://lukasborges.github.io/kondor/`.
    must never change after the first release, since installed clients would reject the repository.
    The secret is created by the maintainer (see "Maintainer setup"), not by the developer.
 3. **Publishing, in the `flatpak` job of `release.yml`** (tags only):
-   1. Restore the published repository. `ostree init --mode=archive-z2 --repo=repo`; if
-      `https://lukasborges.github.io/kondor/repo/summary` exists, add it as an OSTree remote
-      (`--no-gpg-verify` is fine here, since the content is re-signed below) and `ostree pull
-      --mirror` it into `repo`. On the first release, nothing is published yet: start from the
-      empty repository and print a notice.
+   1. Restore the published repository with `scripts/flatpak-restore-repo.sh repo`. It downloads
+      `flatpak-repository.tar` (the Pages site archive) from the newest older release that has it
+      and extracts its `repo/`. Until a release carries the archive, it mirrors
+      `https://lukasborges.github.io/kondor-browser/repo/` once with `ostree pull --mirror`; when
+      nothing is published yet, it starts from an empty repository and prints a notice.
    2. Build with the action into that same `repo` directory, signed (`gpg-sign: <key id>`, with
       `GNUPGHOME` exported), and keep producing `Kondor.flatpak`. If the action cannot export into
       an existing repository, call `flatpak-builder --repo=repo --gpg-sign=… --gpg-homedir=…`
@@ -149,6 +149,6 @@ No UI for this issue, so there is no prototype.
 | Question | Decision |
 | --- | --- |
 | Where is the repository hosted? | GitHub Pages of `lukasborges/kondor`: no new account, free for a public repository, served over HTTPS. If the site outgrows the 1 GB limit, the repository moves to object storage in a follow-up issue. |
-| How are previous commits kept when Pages replaces the whole site? | Each release mirrors the published repository (`ostree pull --mirror`) before exporting the new build, and prunes to depth 2. |
+| How are previous commits kept when Pages replaces the whole site? | Each release restores the published repository before exporting the new build, and prunes to depth 2. After Pages is deployed, the `flatpak-archive` job attaches the site archive to the release as `flatpak-repository.tar`, and the next release restores from it. Mirroring Pages over HTTP made GitHub Pages answer 429 and fail releases (v0.26.0, v0.26.1, v0.27.1); release downloads are not rate-limited that way, and the archive also keeps the static deltas. |
 | Does the bundle built by the script still name a runtime repository? (review of PR #101) | Yes: `flatpak build-bundle` gets `--runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo`, like the bundle the action built for #25. Without it, installing `Kondor.flatpak` fails on a system that has no Flathub remote. |
 | Can a tag deploy to the `github-pages` environment? (review of PR #101) | Not by default: the environment only admits `main`. The maintainer adds a `v*` tag policy (Maintainer setup, step 4); the workflow keeps `environment: github-pages`. |
