@@ -125,15 +125,15 @@ def test_has_icon_only_for_hosts_with_a_stored_icon(store: FaviconStore) -> None
     assert not store.hasIcon(QUrl())
 
 
-def test_store_skips_an_icon_shown_by_a_sleeping_view(
+def test_store_skips_an_icon_shown_by_a_discarded_view(
     store: FaviconStore, favicon_engine: QQmlEngine, qtbot: QtBot
 ) -> None:
     page, icon = QUrl("https://kde.org/"), QUrl("image://favicon/https://kde.org/icon.png")
-    sleeping_view = QObject()
-    store.markSleeping(sleeping_view, icon)
+    discarded_view = QObject()
+    store.markDiscarded(discarded_view, icon)
     store.store(page, icon)
     qtbot.wait(50)
     assert favicon_count() == 0
-    store.markAwake(sleeping_view)
+    store.forgetView(discarded_view)
     with qtbot.waitSignal(store.revisionChanged, timeout=5000):
         store.store(page, icon)

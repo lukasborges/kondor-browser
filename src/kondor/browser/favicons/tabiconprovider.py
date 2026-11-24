@@ -45,7 +45,7 @@ class TabIconProvider(QQuickAsyncImageProvider):
         return response
 
     def request_from_qt(self, icon_id: str, response: TabIconResponse) -> None:
-        qt_response = FaviconStore.instance().request_awake_icon(icon_id)
+        qt_response = FaviconStore.instance().request_icon_of_live_views(icon_id)
         if qt_response is None:
             response.finish_later_with(QImage())
         else:
