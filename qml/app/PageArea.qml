@@ -64,15 +64,10 @@ ColumnLayout {
         Layout.fillHeight: true
         color: root.browserWindow.palette.base
 
-        Repeater {
-            model: root.tabs
-
-            delegate: WebViewTab {
-                tabModel: root.tabs
-                browserActions: root.browserWindow.actions
-                anchors.fill: parent
-                visible: root.tabs.currentTab === tab
-            }
+        TabViews {
+            anchors.fill: parent
+            tabModel: root.tabs
+            browserActions: root.browserWindow.actions
         }
     }
 }
