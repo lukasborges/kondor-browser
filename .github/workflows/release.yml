@@ -172,29 +172,7 @@ jobs:
           echo "FLATPAK_KEY_ID=$key_id" >> "$GITHUB_ENV"
 
       - name: Restore the published repository
-        run: |
-          ostree init --mode=archive-z2 --repo=repo
-          status="$(curl -sS --retry 3 --retry-all-errors -o /dev/null -w '%{http_code}' --head https://lukasborges.github.io/kondor-browser/repo/summary)"
-          case "$status" in
-            200)
-              ostree remote add --repo=repo --no-gpg-verify published https://lukasborges.github.io/kondor-browser/repo/
-              # GitHub Pages answers 429 when releases mirror the repository often: wait and resume.
-              for attempt in 1 2 3 4 5; do
-                ostree pull --repo=repo --mirror published && break
-                [ "$attempt" = 5 ] && exit 1
-                echo "::warning::Mirroring the published repository failed (attempt $attempt), retrying in $((attempt * 60)) s"
-                sleep $((attempt * 60))
-              done
-              ostree remote delete --repo=repo published
-              ;;
-            404)
-              echo "::notice::Nothing is published yet: starting from an empty repository"
-              ;;
-            *)
-              echo "::error::Unexpected HTTP status $status while checking the published repository"
-              exit 1
-              ;;
-          esac
+        run: scripts/flatpak-restore-repo.sh repo
 
       - name: Move the Flatpak installation off the image layer
         # Updating a runtime that ships in the container image renames directories of the image's
@@ -261,3 +239,21 @@ jobs:
           file="$(find bundle -name Kondor.flatpak | head -n 1)"
           test -n "$file"
           gh release upload "$GITHUB_REF_NAME" "$file" --clobber --repo "$GITHUB_REPOSITORY"
+
+  flatpak-archive:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    needs: pages
+    steps:
+      - name: Download the deployed site
+        uses: actions/download-artifact@v8
+        with:
+          name: github-pages
+          path: site
+
+      - name: Attach the site archive to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mv site/artifact.tar flatpak-repository.tar
+          gh release upload "$GITHUB_REF_NAME" flatpak-repository.tar --clobber --repo "$GITHUB_REPOSITORY"
