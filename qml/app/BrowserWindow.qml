@@ -26,6 +26,7 @@ ApplicationWindow {
     readonly property bool tabsBelowAddressBar: Settings.tabStyle === "below"
     readonly property bool tabsInSideBar: Settings.tabStyle === "vertical"
     property alias windowFullScreen: fullScreenControl.windowFullScreen
+    readonly property WindowLayout windowLayout: WindowLayout {}
     readonly property BrowserActions actions: BrowserActions {
         tabs: window.tabModel
         tabController: tabControl
@@ -39,7 +40,7 @@ ApplicationWindow {
         if (windowFullScreen)
             windowFullScreen = false
         else
-            Settings.hideToolbars = false
+            windowLayout.setToolbarsHidden(false)
         toolbarsHint.hide()
     }
     function revealToolbars() { toolbarVisibility.reveal() }
@@ -55,7 +56,6 @@ ApplicationWindow {
     function closeTabFor(tab) { tabControl.closeTabFor(tab) }
     function openTabContextMenu(tab, position) { tabControl.openTabContextMenu(tab, position) }
     function openGroupEditor(group, anchor) { tabControl.openGroupEditor(group, anchor) }
-
     title: windowTitle.text
     onClosing: function(close) { closeGuard.handleClosing(close) }
 
@@ -176,6 +176,7 @@ ApplicationWindow {
         targetWindow: window
         panes: [headerPane, sideBarPane]
         isPointerAtEdge: topEdgeTrigger.isHovered || leftEdgeTrigger.isHovered
+        isHiddenByUser: window.windowLayout.areToolbarsHidden
         isWindowFullScreen: fullScreenControl.windowFullScreen
         isPageFullScreen: fullScreenControl.pageFullScreen
         onHiddenHintRequested: toolbarsHint.show()
@@ -192,6 +193,7 @@ ApplicationWindow {
     ToolbarsHiddenHint {
         id: toolbarsHint
         isWindowFullScreen: window.windowFullScreen
+        areToolbarsHidden: window.windowLayout.areToolbarsHidden
         anchors.horizontalCenter: parent.horizontalCenter
         onActionTriggered: window.showToolbars()
     }

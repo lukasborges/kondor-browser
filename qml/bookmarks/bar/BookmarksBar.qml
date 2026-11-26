@@ -63,7 +63,6 @@ ToolBar {
         contextMenu.popup()
     }
 
-    visible: Settings.showBookmarksBar
     LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
     Kirigami.Theme.colorSet: Kirigami.Theme.Window

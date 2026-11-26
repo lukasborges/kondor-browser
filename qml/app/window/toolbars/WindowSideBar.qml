@@ -33,10 +33,12 @@ SlidingPane {
             id: tabSideBar
             tabModel: root.tabModel
             targetWindow: root.targetWindow
+            collapsed: root.targetWindow.windowLayout.isSideBarCollapsed
             Layout.fillHeight: true
             Layout.preferredWidth: implicitWidth
             onNewTabRequested: root.newTabRequested()
             onTabSearchRequested: root.tabSearchRequested()
+            onCollapseToggleRequested: root.targetWindow.windowLayout.toggleSideBar()
         }
 
         Kirigami.Separator { Layout.fillHeight: true }

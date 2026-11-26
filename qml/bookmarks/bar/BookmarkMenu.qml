@@ -9,6 +9,7 @@ Menu {
 
     property var folderId: -1
     property bool showCommands: false
+    property var windowLayout: null
     property bool showFolderActions: false
     property bool canAddPage: false
     property int skippedCount: 0
@@ -100,8 +101,8 @@ Menu {
         visible: root.showCommands
         text: qsTr("Show Bookmarks Toolbar")
         checkable: true
-        checked: Settings.showBookmarksBar
-        onToggled: Settings.showBookmarksBar = checked
+        checked: root.windowLayout ? root.windowLayout.isBookmarksBarShown : false
+        onToggled: root.windowLayout.setBookmarksBarShown(checked)
     }
     MenuSeparator {
         visible: root.showCommands
@@ -153,10 +154,10 @@ Menu {
     }
 
     Connections {
-        target: Settings
+        target: root.windowLayout
 
-        function onShowBookmarksBarChanged() {
-            toolbarToggle.checked = Settings.showBookmarksBar
+        function onIsBookmarksBarShownChanged() {
+            toolbarToggle.checked = root.windowLayout.isBookmarksBarShown
         }
     }
 }

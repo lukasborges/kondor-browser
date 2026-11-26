@@ -10,12 +10,16 @@ GridLayout {
     readonly property alias searchButton: searchButton
 
     signal tabSearchRequested
+    signal collapseToggleRequested
 
     columns: collapsed ? 1 : 2
     rowSpacing: 0
     columnSpacing: 0
 
-    SideBarToggleButton {}
+    SideBarToggleButton {
+        collapsed: root.collapsed
+        onClicked: root.collapseToggleRequested()
+    }
 
     TabSearchButton {
         id: searchButton

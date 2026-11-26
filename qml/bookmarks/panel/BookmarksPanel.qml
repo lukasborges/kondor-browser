@@ -149,6 +149,8 @@ Popup {
         BookmarksPanelFooter {
             isFolder: root.isInFolder
             canOpenAll: root.folderBookmarks.length > 0
+            isBookmarksBarShown: root.browserWindow.windowLayout.isBookmarksBarShown
+            onBookmarksBarToggled: shown => root.browserWindow.windowLayout.setBookmarksBarShown(shown)
             Layout.fillWidth: true
             onOpenAllRequested: root.openAllInTabs()
             onManageRequested: root.manageBookmarks()

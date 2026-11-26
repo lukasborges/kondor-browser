@@ -30,9 +30,10 @@ them (Ctrl+L).
 
 ### 1. State
 
-- New setting `hideToolbars` (bool, default `false`), remembered, global: changing it applies to every
-  open window at once. It is a UI preference, so private windows may change it too.
-- A window **hides its toolbars** when `windowFullScreen || Settings.hideToolbars`. Page full
+- New setting `hideToolbars` (bool, default `false`), remembered as the last choice: changing it
+  applies only to the window it is changed in, and new windows start with it. It is a UI
+  preference, so private windows may change it too.
+- A window **hides its toolbars** when `windowFullScreen` or the window's own hidden toolbars. Page full
   screen (videos) is unchanged: everything hidden, no reveal.
 - "Toolbars" means: the tab strip, the navigation toolbar, the bookmarks bar and, in the vertical
   tab styles, the side bar. **Not** hidden: InlineBars (permission prompts, crash notice, reload
@@ -81,7 +82,7 @@ them (Ctrl+L).
 - [ ] F11 hides tab strip, toolbar, bookmarks bar and side bar; F11 again restores them and the
       previous window state (maximized stays maximized).
 - [ ] Hide Toolbars on: same in a normal window, with the title bar kept; off: back as before.
-      The setting survives a restart and applies to every window.
+      The setting survives a restart; other open windows keep their toolbars.
 - [ ] Pointer at the top edge reveals them over the page without resizing it; they hide 500 ms
       after the pointer leaves, but not while the address bar has focus or one of their popups is
       open. Ctrl+L reveals them and focuses the address bar.
@@ -143,5 +144,5 @@ Kondor open).
 | Reveal right away at the top edge? | After 300 ms resting there, so moving to a tab of another window or to the title bar does not flash the toolbars. |
 | Hide the InlineBars and find bar too? | No: they ask for an answer or show what the user is doing; hiding them would hide a question. |
 | Name and place? | A checkable "Hide Toolbars" in the main menu under the zoom row, unchecked by default: the maintainer's choice over KDE's usual "Show Toolbar" wording (first proposal), because the action is the exception and reads as what it does. Ctrl+Shift+F because Ctrl+M (KDE's "Show Menubar") is Mute Tab in Kondor. |
-| Remember it? | Yes, globally: it is how the maintainer wants to browse; the top-edge reveal and Ctrl+L keep it discoverable. |
+| Remember it? | Yes, as the last choice, which new windows start with: it is how the maintainer wants to browse; the top-edge reveal and Ctrl+L keep it discoverable. Hiding them in one window leaves the other open windows alone (maintainer's choice, after release v0.27.3). |
 | How does the user get back? (maintainer: "should there be something floating?") | A floating hint for 5 s each time the toolbars hide, with a Show Toolbars button; after that the top edge and the shortcut. A permanent floating button was rejected: it would always cover part of the page in the mode meant to show only the page. |

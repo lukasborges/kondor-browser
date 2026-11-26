@@ -49,6 +49,7 @@ SlidingPane {
         }
 
         BookmarksBar {
+            visible: root.browserWindow.windowLayout.isBookmarksBarShown
             Layout.row: 2
             Layout.fillWidth: true
             tabModel: root.tabModel

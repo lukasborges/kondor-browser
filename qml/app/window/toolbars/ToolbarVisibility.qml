@@ -8,12 +8,13 @@ QtObject {
     required property var targetWindow
     required property var panes
     required property bool isPointerAtEdge
+    required property bool isHiddenByUser
     required property bool isWindowFullScreen
     required property bool isPageFullScreen
 
     property bool isRevealed: false
 
-    readonly property bool areHidden: isWindowFullScreen || Settings.hideToolbars
+    readonly property bool areHidden: isWindowFullScreen || isHiddenByUser
     readonly property bool areShown: !areHidden || isRevealed
     readonly property bool isPointerActive: isPointerAtEdge || panes.some(pane => pane.isHovered)
 

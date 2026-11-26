@@ -9,7 +9,9 @@ RowLayout {
 
     property bool isFolder: false
     property bool canOpenAll: false
+    property bool isBookmarksBarShown: false
 
+    signal bookmarksBarToggled(bool shown)
     signal openAllRequested()
     signal manageRequested()
 
@@ -27,8 +29,8 @@ RowLayout {
     Switch {
         visible: !root.isFolder
         text: qsTr("Show Bookmarks Bar")
-        checked: Settings.showBookmarksBar
-        onToggled: Settings.showBookmarksBar = checked
+        checked: root.isBookmarksBarShown
+        onToggled: root.bookmarksBarToggled(checked)
     }
 
     Item { Layout.fillWidth: true }
