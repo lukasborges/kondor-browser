@@ -25,14 +25,11 @@ import Kondor
 Item {
     width: 300
     height: 300
-    Repeater {
-        model: testTabModel
-        delegate: WebViewTab {
-            width: 300
-            height: 300
-            tabModel: testTabModel
-            browserActions: ({})
-        }
+    TabViews {
+        width: 300
+        height: 300
+        tabModel: testTabModel
+        browserActions: ({})
     }
 }
 """

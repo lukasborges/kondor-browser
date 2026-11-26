@@ -63,14 +63,11 @@ Item {
             scene.devToolsUrl = view && !view.loading ? view.url.toString() : ""
         }
     }
-    Repeater {
-        model: testTabModel
-        delegate: WebViewTab {
-            width: 900
-            height: 900
-            tabModel: testTabModel
-            browserActions: ({})
-        }
+    TabViews {
+        width: 900
+        height: 900
+        tabModel: testTabModel
+        browserActions: ({})
     }
 }
 """
