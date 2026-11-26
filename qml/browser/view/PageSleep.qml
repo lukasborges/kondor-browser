@@ -66,6 +66,4 @@ Item {
         }
         function onVisibleChanged() { if (root.webView.visible) root.wakeUp() }
     }
-
-    Component.onDestruction: FaviconStore.forgetView(webView)
 }

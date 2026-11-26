@@ -12,6 +12,7 @@ Item {
     required property var browserActions
 
     property point contextMenuPosition: Qt.point(0, 0)
+    readonly property alias pageView: pageView
 
     function setDevToolsOpen(open) {
         if (open === root.tab.devToolsOpen)
