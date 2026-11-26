@@ -1,11 +1,13 @@
 from collections.abc import Iterator
 
 import pytest
-from PySide6.QtCore import Q_ARG, QMetaObject
+from PySide6.QtCore import Q_ARG, QCoreApplication, QEvent, QMetaObject, QPoint
 from PySide6.QtQml import QQmlEngine
 from PySide6.QtQuick import QQuickItem, QQuickWindow
+from PySide6.QtTest import QTest
 from pytestqt.qtbot import QtBot
 
+from kondor.browser.popups.openerviews import OpenerViews
 from kondor.browser.tabs.tab import Tab
 from kondor.browser.tabs.tabmodel import TabModel
 from kondor.browser.tabs.tabmodelrows import TAB_ROLE
@@ -109,3 +111,35 @@ def test_popup_of_a_private_tab_uses_the_private_profile_of_the_opener(browser: 
     opener, popup = browser.open_popup(private=True)
     assert popup.profile is opener.profile
     browser.wait_for_title(popup, "opener:true")
+
+
+def hover_over(item: QQuickItem, qtbot: QtBot) -> None:
+    window = item.window()
+    for x in (100, 150, 200):
+        QTest.mouseMove(window, QPoint(x, 150))
+        qtbot.wait(50)
+
+
+def close_tab(browser: Browser, index: int) -> None:
+    browser.model.closeTab(index)
+    QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)
+    browser.qtbot.wait(500)
+
+
+def test_hovering_a_popup_after_closing_its_opener_does_not_crash(
+    browser: Browser, qtbot: QtBot
+) -> None:
+    _, popup = browser.open_popup(private=False)
+    browser.wait_for_title(popup, "opener:true")
+    close_tab(browser, 0)
+    hover_over(browser.scene, qtbot)
+    assert browser.model.rowCount() == 1
+
+
+def test_closing_the_popup_releases_the_kept_opener_view(browser: Browser) -> None:
+    _, popup = browser.open_popup(private=False)
+    browser.wait_for_title(popup, "opener:true")
+    close_tab(browser, 0)
+    assert len(OpenerViews.instance().children()) == 1
+    close_tab(browser, 0)
+    assert OpenerViews.instance().children() == []

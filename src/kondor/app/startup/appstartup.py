@@ -20,6 +20,7 @@ from kondor.app.windows.windowmanager import WindowManager
 from kondor.browser.favicons.faviconimageprovider import FaviconImageProvider
 from kondor.browser.favicons.faviconstore import FaviconStore
 from kondor.browser.favicons.tabiconprovider import TabIconProvider
+from kondor.browser.popups.openerviews import OpenerViews
 from kondor.browser.profile.profilemanager import ProfileManager
 from kondor.extensions.catalog.extensioncatalog import ExtensionCatalog
 from kondor.extensions.extensionmanager import ExtensionManager
@@ -116,4 +117,5 @@ def shut_down(engine: QQmlApplicationEngine) -> None:
     KRunnerService.instance().stop()
     MprisService.instance().stop()
     WindowManager.instance().release_windows()
+    OpenerViews.instance().release_all()
     shiboken6.delete(engine)

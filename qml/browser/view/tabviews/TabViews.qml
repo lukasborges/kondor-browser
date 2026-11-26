@@ -25,12 +25,17 @@ Item {
             id: slot
 
             required property Tab tab
+            property WebViewTab view: null
 
             anchors.fill: parent
             visible: root.tabModel.currentTab === slot.tab
-            Component.onCompleted: viewComponent.createObject(slot, {
+            Component.onCompleted: slot.view = viewComponent.createObject(slot, {
                 tab: slot.tab, tabModel: root.tabModel, browserActions: root.browserActions
             })
+            Component.onDestruction: {
+                if (slot.view)
+                    OpenerViews.retire(slot.view.pageView)
+            }
         }
     }
 }

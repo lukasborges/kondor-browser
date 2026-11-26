@@ -5,6 +5,7 @@ from kondor.browser.capture.screenshot import Screenshot
 from kondor.browser.devtools.tabdevtools import TabDevTools
 from kondor.browser.favicons.faviconstore import FaviconStore
 from kondor.browser.media.mediabridge import MediaBridge
+from kondor.browser.popups.openerviews import OpenerViews
 from kondor.browser.popups.popupbridge import PopupBridge
 from kondor.browser.profile.profilemanager import ProfileManager
 from kondor.browser.responsive.tabresponsive import TabResponsive
@@ -36,6 +37,7 @@ QML_TYPES: tuple[QmlType, ...] = (
     QmlType(TabAgent, "TabAgent", QmlKind.UNCREATABLE),
     QmlType(FaviconStore, "FaviconStore", QmlKind.SINGLETON),
     QmlType(MediaBridge, "MediaBridge", QmlKind.CREATABLE),
+    QmlType(OpenerViews, "OpenerViews", QmlKind.SINGLETON),
     QmlType(PopupBridge, "PopupBridge", QmlKind.CREATABLE),
     QmlType(ProfileManager, "ProfileManager", QmlKind.SINGLETON),
     QmlType(Screenshot, "Screenshot", QmlKind.SINGLETON),

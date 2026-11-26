@@ -125,6 +125,7 @@ WebEngineView {
 
     function openRequestedWindow(request) {
         root.tab.agent.passOnTo(request)
+        OpenerViews.noteOpener(request, root)
         if (opensInWindow(request))
             return WindowManager.newWindowForRequest(root.tab.profile, request)
         const background = request.destination === WebEngineNewWindowRequest.InNewBackgroundTab
@@ -136,6 +137,7 @@ WebEngineView {
         if (!request)
             return
         root.tab.clearPendingRequest()
+        OpenerViews.noteAdopter(request, root)
         request.openIn(root)
     }
 

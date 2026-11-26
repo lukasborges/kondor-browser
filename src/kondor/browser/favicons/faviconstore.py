@@ -111,7 +111,10 @@ class FaviconStore(QObject):
     # https://github.com/lukasborges/kondor-browser/issues/455
     @Slot(QObject, QUrl)
     def markDiscarded(self, view: QObject, iconSource: QUrl) -> None:  # noqa: N802, N803
-        self._discarded_icons[shiboken6.getCppPointer(view)[0]] = provider_icon_id(iconSource)
+        key = shiboken6.getCppPointer(view)[0]
+        if key not in self._discarded_icons:
+            view.destroyed.connect(lambda: self._discarded_icons.pop(key, None))
+        self._discarded_icons[key] = provider_icon_id(iconSource)
 
     @Slot(QObject)
     def forgetView(self, view: QObject) -> None:  # noqa: N802
