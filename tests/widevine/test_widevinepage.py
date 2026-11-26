@@ -86,7 +86,7 @@ def test_page_asking_for_widevine_shows_the_offer(
 ) -> None:
     tab = open_page(model, server, "/widevine")
     qtbot.waitUntil(lambda: tab.widevine.isRequested, timeout=LOAD_TIMEOUT)
-    assert tab.title == "refused"
+    qtbot.waitUntil(lambda: tab.title == "refused", timeout=LOAD_TIMEOUT)
 
 
 def test_other_key_systems_do_not_show_the_offer(
