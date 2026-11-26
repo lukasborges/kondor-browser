@@ -72,9 +72,12 @@ def recent_today(limit: int) -> list[dict[str, str]]:
     return entries
 
 
+def has_whitespace(text: str) -> bool:
+    return any(character.isspace() for character in text)
+
+
 def host_completion(text: str) -> str:
-    prefix = text.strip()
-    if not prefix or " " in prefix:
+    if not text or has_whitespace(text):
         return ""
-    hosts = (host_without_www(item) for item in suggest(prefix, HOST_COMPLETION_CANDIDATES))
-    return next((host for host in hosts if completes_prefix(host, prefix)), "")
+    hosts = (host_without_www(item) for item in suggest(text, HOST_COMPLETION_CANDIDATES))
+    return next((host for host in hosts if completes_prefix(host, text)), "")
