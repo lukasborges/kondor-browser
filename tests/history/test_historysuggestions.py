@@ -49,6 +49,12 @@ def test_host_completion_prefers_most_visited_host(history: HistoryManager) -> N
     assert history.hostCompletion("zzz") == ""
 
 
+def test_host_completion_keeps_a_typed_space(history: HistoryManager) -> None:
+    add_visit("https://kde.org/", "KDE", now_ms())
+    assert history.hostCompletion("kde ") == ""
+    assert history.hostCompletion(" kd") == ""
+
+
 def test_recent_today_excludes_yesterday(history: HistoryManager) -> None:
     midnight = local_midnight()
     add_visit("https://old.example/", "Old", midnight - 1000)

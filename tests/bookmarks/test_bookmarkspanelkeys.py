@@ -21,6 +21,7 @@ ApplicationWindow {
     property var opened: []
     QtObject {
         id: fakeBrowserWindow
+        readonly property WindowLayout windowLayout: WindowLayout {}
         function openUrl(url, background) { window.opened = window.opened.concat([url.toString()]) }
         function openBookmarks() {}
     }

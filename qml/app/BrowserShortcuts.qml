@@ -102,7 +102,7 @@ Item {
     }
     Shortcut {
         sequence: "Ctrl+Shift+B"
-        onActivated: Settings.showBookmarksBar = !Settings.showBookmarksBar
+        onActivated: root.browserWindow.windowLayout.toggleBookmarksBar()
     }
     Shortcut {
         sequence: "Ctrl+Shift+O"

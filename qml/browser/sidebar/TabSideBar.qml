@@ -9,12 +9,13 @@ Rectangle {
     required property TabModel tabModel
     required property var targetWindow
 
+    property bool collapsed: false
+
     signal newTabRequested()
     signal tabSearchRequested()
+    signal collapseToggleRequested()
 
     readonly property alias searchButton: bottomButtons.searchButton
-
-    readonly property bool collapsed: Settings.sideBarCollapsed
 
     implicitWidth: collapsed
         ? Kirigami.Units.gridUnit * 2 + Kirigami.Units.smallSpacing * 4
@@ -59,6 +60,7 @@ Rectangle {
             Layout.margins: Kirigami.Units.smallSpacing
             Layout.alignment: sideBar.collapsed ? Qt.AlignHCenter : Qt.AlignLeft
             onTabSearchRequested: sideBar.tabSearchRequested()
+            onCollapseToggleRequested: sideBar.collapseToggleRequested()
         }
     }
 }

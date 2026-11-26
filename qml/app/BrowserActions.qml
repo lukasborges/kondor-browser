@@ -12,6 +12,7 @@ QtObject {
     required property var pageArea
     property Window browserWindow: null
 
+    readonly property var windowLayout: browserWindow ? browserWindow.windowLayout : null
     readonly property bool hasWindowFocus: !browserWindow || browserWindow.activeFocusItem !== null
     readonly property bool hasPage: tabs.currentTab ? !tabs.currentTab.newTabPage : false
 
@@ -94,8 +95,8 @@ QtObject {
         text: qsTr("Hide Toolbars")
         shortcut: "Ctrl+Shift+F"
         checkable: true
-        checked: Settings.hideToolbars
-        onToggled: Settings.hideToolbars = checked
+        checked: root.windowLayout ? root.windowLayout.areToolbarsHidden : false
+        onToggled: root.windowLayout.setToolbarsHidden(checked)
     }
     readonly property Action devToolsAction: Action {
         text: qsTr("Show Developer Tools")

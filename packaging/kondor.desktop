@@ -65,7 +65,29 @@ StartupNotify=true
 StartupWMClass=kondor
 MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-kondor-extension;application/pdf;
 Keywords=browser;web;internet;
-Actions=new-private-window;
+Actions=new-window;new-private-window;
+
+[Desktop Action new-window]
+Name=New Window
+Name[ca]=Finestra nova
+Name[cs]=Nové okno
+Name[de]=Neues Fenster
+Name[es]=Nueva ventana
+Name[fr]=Nouvelle fenêtre
+Name[it]=Nuova finestra
+Name[ja]=新しいウィンドウ
+Name[ko]=새 창
+Name[nl]=Nieuw venster
+Name[pl]=Nowe okno
+Name[pt_BR]=Nova janela
+Name[pt_PT]=Nova janela
+Name[ru]=Новое окно
+Name[sv]=Nytt fönster
+Name[tr]=Yeni pencere
+Name[uk]=Нове вікно
+Name[zh_CN]=新建窗口
+Name[zh_TW]=新增視窗
+Exec=kondor --new-window
 
 [Desktop Action new-private-window]
 Name=New Private Window

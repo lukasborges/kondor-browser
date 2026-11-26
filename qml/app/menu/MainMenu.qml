@@ -36,6 +36,7 @@ Menu {
         title: qsTr("Bookmarks")
         icon.name: "bookmarks"
         showCommands: true
+        windowLayout: root.browserWindow.windowLayout
         folderId: BookmarkManager.toolbarFolderId()
         onBookmarkActivated: function(url, background) {
             root.browserWindow.openUrl(url, background)

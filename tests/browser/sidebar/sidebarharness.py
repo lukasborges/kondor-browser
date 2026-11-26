@@ -7,7 +7,6 @@ from PySide6.QtTest import QTest
 
 from kondor.browser.tabs.tab import Tab
 from kondor.browser.tabs.tabmodel import TabModel
-from kondor.core.settings.settings import Settings
 from tests.browser.tabstrip.tabstripharness import create_kept
 
 SIDE_BAR_QML = "import QtQuick\nimport Kondor\nTabSideBar {}\n"
@@ -49,12 +48,11 @@ SETTLE_MS = 50
 
 class SideBarHarness:
     def __init__(self, engine: QQmlEngine, collapsed: bool) -> None:
-        Settings.instance().setProperty("sideBarCollapsed", collapsed)
         self.tabs = TabModel()
         self.window = QQuickWindow()
         self.window.resize(SIDE_BAR_WIDTH, SIDE_BAR_HEIGHT)
         stub = create_kept(engine, STUB_QML, {"model": self.tabs})
-        properties = {"tabModel": self.tabs, "targetWindow": stub}
+        properties = {"tabModel": self.tabs, "targetWindow": stub, "collapsed": collapsed}
         bar = create_kept(engine, SIDE_BAR_QML, properties)
         assert isinstance(bar, QQuickItem)
         bar.setParentItem(self.window.contentItem())
@@ -65,7 +63,6 @@ class SideBarHarness:
         QTest.qWait(SETTLE_MS)
 
     def close(self) -> None:
-        Settings.instance().setProperty("sideBarCollapsed", False)
         self.window.close()
         self.tabs.deleteLater()
 

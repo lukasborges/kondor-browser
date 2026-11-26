@@ -29,9 +29,9 @@ side bar: `gridUnit * 14` is a lot of width to give up on every page.
 - `Settings.sideBarCollapsed`: a bool, default `false`, key `UI/SideBarCollapsed` in `Kondor.conf`.
 - It is not in the Settings dialog: it is changed only by the button of item 2, like the bookmarks
   bar switch. It is not part of `SettingsDraft`, so the dialog's Defaults does not touch it.
-- It is global: every open window collapses or expands together, without a restart and without
-  reloading a page. Collapsing in a private window writes the setting too; it is a look preference,
-  not browsing data.
+- It is per window: collapsing changes only the window it is clicked in, without reloading a page.
+  The setting keeps the last choice, which new windows start with. Collapsing in a private window
+  writes the setting too; it is a look preference, not browsing data.
 
 ### 2. The toggle button
 

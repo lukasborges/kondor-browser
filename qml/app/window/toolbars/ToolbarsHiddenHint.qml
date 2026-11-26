@@ -6,6 +6,7 @@ FullScreenHint {
     id: root
 
     required property bool isWindowFullScreen
+    required property bool areToolbarsHidden
 
     y: Kirigami.Units.gridUnit * 2
     iconName: ""
@@ -20,11 +21,8 @@ FullScreenHint {
     shownOpacity: 0.95
     isOutlined: true
 
-    Connections {
-        target: Settings
-        function onHideToolbarsChanged() {
-            if (Settings.hideToolbars)
-                root.announce(qsTr("Toolbars hidden. Move the pointer to the top edge or press Ctrl+L to show them."))
-        }
+    onAreToolbarsHiddenChanged: {
+        if (areToolbarsHidden)
+            announce(qsTr("Toolbars hidden. Move the pointer to the top edge or press Ctrl+L to show them."))
     }
 }
